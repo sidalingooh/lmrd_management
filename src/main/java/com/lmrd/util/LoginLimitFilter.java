@@ -1,5 +1,6 @@
 package com.lmrd.util;
 
+import com.lmrd.entity.user.BackUser;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 

@@ -132,42 +132,28 @@ public class PageTag4top<T> extends BodyTagSupport {
 			// 上一页处理
 			/*sb.append("第<span>"+pageNo+"</span>页/共<span>"+pageCount+"</span>页");*/
 			//sb.append("<a class=\"number\">第()页/共()页</a>");
-			sb.append("<a href=\"#\" title=\"首页\" onclick=\"javascript:turnOverPage"
-					+ formName + "(")
-					.append(1)
-					.append(")\">首页</a>");
-			if (pageNo == 1) {
-				/*sb.append(
-						"<span class=\"t-pagebtn  radius\"><img src=\"../img/pre-btn.png\"><i></i></span>")
-						.append("\r\n");*/
-				sb.append("<span class=\"disabledpre\"></span>");
-				// sb.append("<span class=\"page_pns\">&laquo;").append(
-				// "</span>\r\n");
 
+			if (pageNo == 1) {
+				sb.append("<a href=\"javascript:;\" title=\"首页\" class=\"layui-laypage-prev layui-disabled\" >首页</a>");
+				sb.append("<a href=\"javascript:;\" title=\"上一页\" class=\"layui-laypage-prev layui-disabled\" >上一页</a>");
 			} else {
-				/*sb.append(
-						"<span class=\"t-pagebtn  radius\" onclick=\"javascript:turnOverPage"
-								+ formName + "(")
-						.append((pageNo - 1))
-						.append(")\" > <img src=\"../img/pre-btn.png\"><i></i></span>")
-						.append("\r\n");*/
-				sb.append("<a href=\"#\" title=\"上一页\" class=\"disabledpre\" onclick=\"javascript:turnOverPage"
+				sb.append("<a class=\"layui-laypage-prev\" href=\"javascript:;\" title=\"首页\" onclick=\"javascript:turnOverPage"
+						+ formName + "(")
+						.append(1)
+						.append(")\">首页</a>");
+				sb.append("<a href=\"javascript:;\" title=\"上一页\" class=\"layui-laypage-prev\" onclick=\"javascript:turnOverPage"
 						+ formName + "(")
 						.append((pageNo - 1))
-						.append(")\"></a>");
-				// sb.append("<a class=\"page_pn\" href=\"javascript:turnOverPage"
-				// + formName + "(").append((pageNo - 1))
-				// .append(")\">&laquo;</a>\r\n");
-
+						.append(")\">上一页</a>");
 			}
 
 			// 如果前面页数过多,显示"..."
 			int start = 1;
 			 if (this.pageNo > 4) {
 			 start = this.pageNo - 1;
-			 sb.append("<a class=\"number\" href=\"#\" onclick=\"javascript:turnOverPage" + formName
+			 sb.append("<a class=\"number\" href=\"javascript:;\" onclick=\"javascript:turnOverPage" + formName
 			 + "(1)\">1</a>\r\n");
-			 sb.append("<a class=\"number\" href=\"#\" onclick=\"javascript:turnOverPage" + formName
+			 sb.append("<a class=\"number\" href=\"javascript:;\" onclick=\"javascript:turnOverPage" + formName
 			 + "(2)\">2</a>\r\n");
 			 }
 			// // 显示当前页附近的页
@@ -177,16 +163,11 @@ public class PageTag4top<T> extends BodyTagSupport {
 			}
 			 for (int i = start; i <= end; i++) {
 			 if (pageNo == i) { // 当前页号不需要超链接
-			 //sb.append("<span class=\"t-pagebtn  radius\"><img src=\"${pageContext.request.contextPath}/images/right_08.png\"><i>1</i></span>").append("\r\n");
 				 sb.append(
-						 "<a class=\"number current\" href=\"#\">").append(i).append("</a>\r\n");
-			 // sb.append("<span class=\"current\">").append(i)
-			 // .append("</span>\r\n");
+						 "<span class=\"layui-laypage-curr\" href=\"javascript:;\"><em class=\"layui-laypage-em\"></em><em>").append(i).append("</em></span>\r\n");
 			 } else {
-				 //class="number"
-			 //sb.append("<span class=\"t-pagebtn  radius\"><img src=\"${pageContext.request.contextPath}/images/right_08.png\"><i>2</i></span>").append("\r\n");
 			 sb.append(
-			 "<a class=\"number\" href=\"#\" onclick=\"javascript:turnOverPage" + formName
+			 "<a class=\"number\" href=\"javascript:;\" onclick=\"javascript:turnOverPage" + formName
 			 + "(").append(i).append(")\">").append(i)
 			 .append("</a>\r\n");
 			 }
@@ -208,57 +189,37 @@ public class PageTag4top<T> extends BodyTagSupport {
 
 			// 下一页处理
 			if (pageNo == pageCount) {
-				/*sb.append(
-						"<span class=\"t-pagebtn  radius\"><img src=\"../img/next-btn.png\"><i></i></span>")
-						.append("\r\n");*/
-				//sb.append("<li class='next-page'></li>");
-				sb.append("<span class=\"disablednext\"></span>");
+				sb.append("<a href=\"javascript:;\" title=\"下一页\" class=\"layui-laypage-next layui-disabled\" >下一页</a>");
+				// 尾页处理
+				sb.append("<a href=\"javascript:;\" title=\"尾页\" class=\"layui-laypage-next layui-disabled\" >尾页</a>");
 			} else {
-				/*sb.append("<li class='next-page' onclick=\"javascript:turnOverPage"
+				sb.append("<a href=\"javascript:;\" title=\"下一页\" class=\"layui-laypage-next\" onclick=\"javascript:turnOverPage"
 						+ formName + "(")
 						.append((pageNo + 1))
-						.append(")\"></li>");*/
-				sb.append("<a href=\"#\" title=\"下一页\" class=\"disablednext\" onclick=\"javascript:turnOverPage"
+						.append(")\">下一页</a>");
+				// 尾页处理
+				sb.append("<a href=\"javascript:;\" title=\"尾页\" class=\"layui-laypage-next\" onclick=\"javascript:turnOverPage"
 						+ formName + "(")
-						.append((pageNo + 1))
-						.append(")\"></a>");
-				/*sb.append(
-						"<span class=\"t-pagebtn  radius\" onclick=\"javascript:turnOverPage"
-								+ formName + "(")
-						.append((pageNo + 1))
-						.append(")\"><img src=\"../img/next-btn.png\"><i></i></span>")
-						.append("\r\n");*/
-				// sb.append(
-				// "<a class=\"next\"  href=\"javascript:turnOverPage"
-				// + formName + "(").append((pageNo + 1))
-				// .append(")\">&raquo;</a>\r\n");
+						.append(pageCount)
+						.append(")\">尾页</a>");
 			}
-			// 尾页处理
-			sb.append("<a href=\"#\" title=\"尾页\" onclick=\"javascript:turnOverPage"
-					+ formName + "(")
-					.append(pageCount)
-					.append(")\">尾页</a>");
+
 			sb.append("<div class=\"clear\"></div></form>");
 		}
 
 		// 输出统计数据
 
-				sb.append("<span class='goPageNums'>\r\n").append("<span class=\"goPageBox\">&nbsp;到第")
-				.append("<span id=\"kkpager_gopage_wrap\">")
+				sb.append("<span class='layui-laypage-skip'>\r\n").append("到第")
+				//.append("<span id=\"kkpager_gopage_wrap\">")
 
-				.append("<input type=\"text\" style=\"height: 24px;\" id=\"btn_go_input\" onkeyup=\"this.value=this.value.replace(/\\D/g,'')\" onafterpaste=\"this.value=this.value.replace(/\\D/g,'')\" onfocus=\"focus_gopage();\" onkeypress=\"return keypress_gopage(event);\" onblur=\"blur_gopage();\" value=\""+pageNo+"\" hidefocus=\"true\" class=\"btn_go_input\">")
-				.append("</span>页</span>")
+				.append("<input type=\"text\" id=\"btn_go_input\" onkeyup=\"this.value=this.value.replace(/\\D/g,'')\" onafterpaste=\"this.value=this.value.replace(/\\D/g,'')\" onfocus=\"focus_gopage();\" onkeypress=\"return keypress_gopage(event);\" onblur=\"blur_gopage();\" value=\""+pageNo+"\" hidefocus=\"true\" class=\"layui-input\">")
+				.append("页")
 				.append("<input type=\"button\" id=\"btn_go\" onclick=\"turnOverPage"
 						+ formName
-						+ "($('#btn_go_input').val())\" value=\"确定\" style=\"display: none; left: 15px;\" class=\"btn_go\">").append("</span>");
-
-		sb.append("<span class=\"totalText\">\r\n")
-				.append("第<span class=\"currPageNum\">" + pageNo
-						+ "</span>页")
-				.append("<span class=\"totalInfoSplitStr\">/</span>")
-				.append("共<span class=\"totalPageNum\">" + pageCount
-						+ "</span>页 共" + total + "条")
-				.append("</span>\r\n");
+						+ "($('#btn_go_input').val())\" value=\"确定\" style=\"display: none;\" class=\"layui-laypage-btn\">")
+				.append("&nbsp;&nbsp;&nbsp;第" + pageNo + "页")
+				.append("/")
+				.append("共" + pageCount + "页 共" + total + "条").append("</span>");
 
 		// 输出统计数据
 		// sb.append("&nbsp;共<strong>").append(total).append("</strong>项")

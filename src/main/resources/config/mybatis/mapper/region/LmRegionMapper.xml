@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lmrd.dao.region.LmRegionMapper">
+  <resultMap id="BaseResultMap" type="com.lmrd.entity.region.LmRegion">
+    <!--
+    @mbg.generated
+    -->
+    <id column="region_id" jdbcType="VARCHAR" property="regionId" />
+    <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="merger_name" jdbcType="VARCHAR" property="mergerName" />
+    <result column="short_name" jdbcType="VARCHAR" property="shortName" />
+    <result column="merger_short_name" jdbcType="VARCHAR" property="mergerShortName" />
+    <result column="level_type" jdbcType="VARCHAR" property="levelType" />
+    <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+    <result column="zip_code" jdbcType="VARCHAR" property="zipCode" />
+    <result column="pin_yin" jdbcType="VARCHAR" property="pinYin" />
+    <result column="jian_pin" jdbcType="VARCHAR" property="jianPin" />
+    <result column="first_char" jdbcType="VARCHAR" property="firstChar" />
+    <result column="lng" jdbcType="VARCHAR" property="lng" />
+    <result column="lat" jdbcType="VARCHAR" property="lat" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbg.generated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbg.generated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbg.generated
+    -->
+    region_id, parent_id, name, merger_name, short_name, merger_short_name, level_type, 
+    city_code, zip_code, pin_yin, jian_pin, first_char, lng, lat, remarks
+  </sql>
+  <select id="selectByExample" parameterType="com.lmrd.entity.region.LmRegionExample" resultMap="BaseResultMap">
+    <!--
+    @mbg.generated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from lm_region
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--
+    @mbg.generated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from lm_region
+    where region_id = #{regionId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--
+    @mbg.generated
+    -->
+    delete from lm_region
+    where region_id = #{regionId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lmrd.entity.region.LmRegionExample">
+    <!--
+    @mbg.generated
+    -->
+    delete from lm_region
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lmrd.entity.region.LmRegion">
+    <!--
+    @mbg.generated
+    -->
+    insert into lm_region (region_id, parent_id, name, 
+      merger_name, short_name, merger_short_name, 
+      level_type, city_code, zip_code, 
+      pin_yin, jian_pin, first_char, 
+      lng, lat, remarks)
+    values (#{regionId,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{mergerName,jdbcType=VARCHAR}, #{shortName,jdbcType=VARCHAR}, #{mergerShortName,jdbcType=VARCHAR}, 
+      #{levelType,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR}, 
+      #{pinYin,jdbcType=VARCHAR}, #{jianPin,jdbcType=VARCHAR}, #{firstChar,jdbcType=VARCHAR}, 
+      #{lng,jdbcType=VARCHAR}, #{lat,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lmrd.entity.region.LmRegion">
+    <!--
+    @mbg.generated
+    -->
+    insert into lm_region
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="regionId != null">
+        region_id,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="mergerName != null">
+        merger_name,
+      </if>
+      <if test="shortName != null">
+        short_name,
+      </if>
+      <if test="mergerShortName != null">
+        merger_short_name,
+      </if>
+      <if test="levelType != null">
+        level_type,
+      </if>
+      <if test="cityCode != null">
+        city_code,
+      </if>
+      <if test="zipCode != null">
+        zip_code,
+      </if>
+      <if test="pinYin != null">
+        pin_yin,
+      </if>
+      <if test="jianPin != null">
+        jian_pin,
+      </if>
+      <if test="firstChar != null">
+        first_char,
+      </if>
+      <if test="lng != null">
+        lng,
+      </if>
+      <if test="lat != null">
+        lat,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="regionId != null">
+        #{regionId,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mergerName != null">
+        #{mergerName,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null">
+        #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="mergerShortName != null">
+        #{mergerShortName,jdbcType=VARCHAR},
+      </if>
+      <if test="levelType != null">
+        #{levelType,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null">
+        #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pinYin != null">
+        #{pinYin,jdbcType=VARCHAR},
+      </if>
+      <if test="jianPin != null">
+        #{jianPin,jdbcType=VARCHAR},
+      </if>
+      <if test="firstChar != null">
+        #{firstChar,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null">
+        #{lng,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null">
+        #{lat,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lmrd.entity.region.LmRegionExample" resultType="java.lang.Long">
+    <!--
+    @mbg.generated
+    -->
+    select count(*) from lm_region
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbg.generated
+    -->
+    update lm_region
+    <set>
+      <if test="record.regionId != null">
+        region_id = #{record.regionId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentId != null">
+        parent_id = #{record.parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mergerName != null">
+        merger_name = #{record.mergerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shortName != null">
+        short_name = #{record.shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mergerShortName != null">
+        merger_short_name = #{record.mergerShortName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.levelType != null">
+        level_type = #{record.levelType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityCode != null">
+        city_code = #{record.cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zipCode != null">
+        zip_code = #{record.zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pinYin != null">
+        pin_yin = #{record.pinYin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jianPin != null">
+        jian_pin = #{record.jianPin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firstChar != null">
+        first_char = #{record.firstChar,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lng != null">
+        lng = #{record.lng,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lat != null">
+        lat = #{record.lat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks != null">
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbg.generated
+    -->
+    update lm_region
+    set region_id = #{record.regionId,jdbcType=VARCHAR},
+      parent_id = #{record.parentId,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      merger_name = #{record.mergerName,jdbcType=VARCHAR},
+      short_name = #{record.shortName,jdbcType=VARCHAR},
+      merger_short_name = #{record.mergerShortName,jdbcType=VARCHAR},
+      level_type = #{record.levelType,jdbcType=VARCHAR},
+      city_code = #{record.cityCode,jdbcType=VARCHAR},
+      zip_code = #{record.zipCode,jdbcType=VARCHAR},
+      pin_yin = #{record.pinYin,jdbcType=VARCHAR},
+      jian_pin = #{record.jianPin,jdbcType=VARCHAR},
+      first_char = #{record.firstChar,jdbcType=VARCHAR},
+      lng = #{record.lng,jdbcType=VARCHAR},
+      lat = #{record.lat,jdbcType=VARCHAR},
+      remarks = #{record.remarks,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lmrd.entity.region.LmRegion">
+    <!--
+    @mbg.generated
+    -->
+    update lm_region
+    <set>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mergerName != null">
+        merger_name = #{mergerName,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null">
+        short_name = #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="mergerShortName != null">
+        merger_short_name = #{mergerShortName,jdbcType=VARCHAR},
+      </if>
+      <if test="levelType != null">
+        level_type = #{levelType,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        city_code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null">
+        zip_code = #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pinYin != null">
+        pin_yin = #{pinYin,jdbcType=VARCHAR},
+      </if>
+      <if test="jianPin != null">
+        jian_pin = #{jianPin,jdbcType=VARCHAR},
+      </if>
+      <if test="firstChar != null">
+        first_char = #{firstChar,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null">
+        lng = #{lng,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null">
+        lat = #{lat,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where region_id = #{regionId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lmrd.entity.region.LmRegion">
+    <!--
+    @mbg.generated
+    -->
+    update lm_region
+    set parent_id = #{parentId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      merger_name = #{mergerName,jdbcType=VARCHAR},
+      short_name = #{shortName,jdbcType=VARCHAR},
+      merger_short_name = #{mergerShortName,jdbcType=VARCHAR},
+      level_type = #{levelType,jdbcType=VARCHAR},
+      city_code = #{cityCode,jdbcType=VARCHAR},
+      zip_code = #{zipCode,jdbcType=VARCHAR},
+      pin_yin = #{pinYin,jdbcType=VARCHAR},
+      jian_pin = #{jianPin,jdbcType=VARCHAR},
+      first_char = #{firstChar,jdbcType=VARCHAR},
+      lng = #{lng,jdbcType=VARCHAR},
+      lat = #{lat,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where region_id = #{regionId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectRegionList" parameterType="com.lmrd.entity.region.LmRegion" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from mt_region
+    where (1=1) AND
+    level_type = '1'
+  </select>
+</mapper>

@@ -2,10 +2,10 @@ server:
   port: 8821
 spring:
   #JSP
-  #mvc:
-    #view:
-      #prefix: /WEB-INF/jsp/
-      #suffix: .html
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
   datasource:
     name: lmrd
     #url: jdbc:mysql://rm-2zeen9i09ic74d6bcfo.mysql.rds.aliyuncs.com/mep_tax
@@ -30,22 +30,22 @@ spring:
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
     #<!-- 关闭thymeleaf缓存 开发时使用 否则没有实时画面-->
-  thymeleaf:
-    cache: false
-    ## 检查模板是否存在，然后再呈现
-    check-template-location: true
-    #Content-Type值
-    #content-type: text/html
-    #启用MVC Thymeleaf视图分辨率
-    enabled: true
-    ## 应该从解决方案中排除的视图名称的逗号分隔列表
-    ##spring.thymeleaf.excluded-view-names=
-    #模板编码
-    mode: LEGACYHTML5
-    # 在构建URL时预先查看名称的前缀
-    prefix: classpath:/templates/
-    # 构建URL时附加查看名称的后缀.
-    suffix: .html
+#  thymeleaf:
+#    cache: false
+#    ## 检查模板是否存在，然后再呈现
+#    check-template-location: true
+#    #Content-Type值
+#    #content-type: text/html
+#    #启用MVC Thymeleaf视图分辨率
+#    enabled: true
+#    ## 应该从解决方案中排除的视图名称的逗号分隔列表
+#    ##spring.thymeleaf.excluded-view-names=
+#    #模板编码
+#    mode: LEGACYHTML5
+#    # 在构建URL时预先查看名称的前缀
+#    prefix: classpath:/templates/
+#    # 构建URL时附加查看名称的后缀.
+#    suffix: .html
 # 链中模板解析器的顺序
 #spring.thymeleaf.template-resolver-order= o
 # 可以解析的视图名称的逗号分隔列表

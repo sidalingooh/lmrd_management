@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lmrd.dao.user.BackRoleMenuMapper">
+  <resultMap id="BaseResultMap" type="com.lmrd.entity.user.BackRoleMenu">
+    <!--
+    @mbg.generated
+    -->
+    <id column="back_role_menu_id" jdbcType="BIGINT" property="backRoleMenuId" />
+    <result column="back_menu_id" jdbcType="BIGINT" property="backMenuId" />
+    <result column="back_role_id" jdbcType="BIGINT" property="backRoleId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbg.generated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbg.generated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbg.generated
+    -->
+    back_role_menu_id, back_menu_id, back_role_id
+  </sql>
+  <select id="selectByExample" parameterType="com.lmrd.entity.user.BackRoleMenuExample" resultMap="BaseResultMap">
+    <!--
+    @mbg.generated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from back_role_menu
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--
+    @mbg.generated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from back_role_menu
+    where back_role_menu_id = #{backRoleMenuId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--
+    @mbg.generated
+    -->
+    delete from back_role_menu
+    where back_role_menu_id = #{backRoleMenuId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lmrd.entity.user.BackRoleMenuExample">
+    <!--
+    @mbg.generated
+    -->
+    delete from back_role_menu
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lmrd.entity.user.BackRoleMenu">
+    <!--
+    @mbg.generated
+    -->
+    insert into back_role_menu (back_role_menu_id, back_menu_id, back_role_id
+      )
+    values (#{backRoleMenuId,jdbcType=BIGINT}, #{backMenuId,jdbcType=BIGINT}, #{backRoleId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lmrd.entity.user.BackRoleMenu">
+    <!--
+    @mbg.generated
+    -->
+    insert into back_role_menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="backRoleMenuId != null">
+        back_role_menu_id,
+      </if>
+      <if test="backMenuId != null">
+        back_menu_id,
+      </if>
+      <if test="backRoleId != null">
+        back_role_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="backRoleMenuId != null">
+        #{backRoleMenuId,jdbcType=BIGINT},
+      </if>
+      <if test="backMenuId != null">
+        #{backMenuId,jdbcType=BIGINT},
+      </if>
+      <if test="backRoleId != null">
+        #{backRoleId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lmrd.entity.user.BackRoleMenuExample" resultType="java.lang.Long">
+    <!--
+    @mbg.generated
+    -->
+    select count(*) from back_role_menu
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbg.generated
+    -->
+    update back_role_menu
+    <set>
+      <if test="record.backRoleMenuId != null">
+        back_role_menu_id = #{record.backRoleMenuId,jdbcType=BIGINT},
+      </if>
+      <if test="record.backMenuId != null">
+        back_menu_id = #{record.backMenuId,jdbcType=BIGINT},
+      </if>
+      <if test="record.backRoleId != null">
+        back_role_id = #{record.backRoleId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbg.generated
+    -->
+    update back_role_menu
+    set back_role_menu_id = #{record.backRoleMenuId,jdbcType=BIGINT},
+      back_menu_id = #{record.backMenuId,jdbcType=BIGINT},
+      back_role_id = #{record.backRoleId,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lmrd.entity.user.BackRoleMenu">
+    <!--
+    @mbg.generated
+    -->
+    update back_role_menu
+    <set>
+      <if test="backMenuId != null">
+        back_menu_id = #{backMenuId,jdbcType=BIGINT},
+      </if>
+      <if test="backRoleId != null">
+        back_role_id = #{backRoleId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where back_role_menu_id = #{backRoleMenuId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lmrd.entity.user.BackRoleMenu">
+    <!--
+    @mbg.generated
+    -->
+    update back_role_menu
+    set back_menu_id = #{backMenuId,jdbcType=BIGINT},
+      back_role_id = #{backRoleId,jdbcType=BIGINT}
+    where back_role_menu_id = #{backRoleMenuId,jdbcType=BIGINT}
+  </update>
+
+
+  <insert id="addRoleMenu" parameterType="java.util.List">
+    insert into
+    back_role_menu(
+    back_menu_id, back_role_id
+    )values
+    <foreach collection="list" item="item" index="index"
+             separator=",">
+      (#{item.backMenuId,jdbcType=BIGINT},
+      #{item.backRoleId,jdbcType=BIGINT})
+    </foreach>
+  </insert>
+</mapper>
