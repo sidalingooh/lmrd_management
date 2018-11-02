@@ -21,6 +21,10 @@ function entryBackRole() {
                 parent.layer.msg("角色名称不能为空!");
                 return;
             }
+            if(roleSet == "") {
+                parent.layer.msg("请选择角色分类!");
+                return;
+            }
             if(description != "") {
                 if(description.length > 15) {
                     parent.layer.msg("描述字符请小于15个字符!");
@@ -204,6 +208,14 @@ function editBackRole(backRoleId) {
             var backRoleName = body.find("#backRoleName").val();
             var roleSet = body.find("#roleSet").val();
             var description = body.find("#description").val();
+            if(backRoleName == "") {
+                parent.layer.msg("角色名称不能为空!");
+                return;
+            }
+            if(roleSet == "") {
+                parent.layer.msg("请选择角色分类!");
+                return;
+            }
             if(description != "") {
                 if(description.length > 15) {
                     parent.layer.msg("描述字符请小于15个字符!");

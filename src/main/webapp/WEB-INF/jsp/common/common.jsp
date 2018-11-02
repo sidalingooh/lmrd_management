@@ -3,11 +3,11 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib uri="http://sswh.MeTo.cn/tags/pager" prefix="page"%>
-<%@ taglib uri="http://sswh.MeTo.cn/tags/pager4top" prefix="page4top"%>
-<%@ taglib uri="http://sswh.MeTo.cn/tags/date" prefix="date"%>
-<%@ taglib uri="http://sswh.MeTo.cn/tags/ip" prefix="ip"%>
-<%@ taglib uri="http://sswh.MeTo.cn/tags/telphone" prefix="telphone"%>
+<%@ taglib uri="http://lmrd.cn/tags/pager" prefix="page"%>
+<%@ taglib uri="http://lmrd.cn/tags/pager4top" prefix="page4top"%>
+<%@ taglib uri="http://lmrd.cn/tags/date" prefix="date"%>
+<%@ taglib uri="http://lmrd.cn/tags/ip" prefix="ip"%>
+<%@ taglib uri="http://lmrd.cn/tags/telphone" prefix="telphone"%>
 
 <%--<link rel="stylesheet" href="${ctx}/css/common.css" >
 <link rel="stylesheet" href="${ctx}/css/style.css" >
@@ -29,8 +29,6 @@
 <script type="text/javascript" src="${ctx}/js/layer_common.js"></script>
 <script type="text/javascript" src="${ctx}/js/layer/laydate.js"></script>--%>
 <script type="text/javascript" src="${ctx}/js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="${ctx}/js/page.js"></script>
-<script type="text/javascript" src="${ctx}/js/common.js"></script>
 <script type="text/javascript" src="${ctx}/js/kkpager.js"></script>
 <script type="text/javascript" src="${ctx}/frame/layui/layui.js"></script>
 <script type="text/javascript" src="${ctx}/frame/static/js/vip_comm.js"></script>

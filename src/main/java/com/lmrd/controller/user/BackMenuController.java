@@ -50,9 +50,9 @@ public class BackMenuController {
     public String list(HttpServletRequest request, Integer pageNo,
                        String peropoty, Integer pageSize){
         BackUser backUser = (BackUser) request.getSession().getAttribute("loginUser");
-        if(!"1".equals(backUser.getUserType()) && !"0".equals(backUser.getUserType())) {
+        /*if(!"1".equals(backUser.getUserType()) && !"0".equals(backUser.getUserType())) {
             return "backMenu/list";
-        }
+        }*/
         if (pageNo == null || pageNo.equals("")) {
             pageNo = 1;
         }
@@ -61,6 +61,7 @@ public class BackMenuController {
         }
         PageUtil.startPage(pageNo, pageSize);
         BackMenuExample example = new BackMenuExample();
+        example.setOrderByClause("back_menu_id DESC");
         List<BackMenu> backMenuList = backMenuService.selectByExample(example);
         PageData pd = new PageData(backMenuList);
         PageTag<PageData> pt = new PageTag<PageData>(pd);

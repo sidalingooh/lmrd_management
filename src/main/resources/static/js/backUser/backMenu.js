@@ -19,6 +19,21 @@ function entryBackMenu() {
             var backUrl =  body.find("#url").val();
             var orderNum =  body.find("#orderNum").val();
             var description =  body.find("#description").val();
+            if(backMenuName == "") {
+                parent.layer.msg("请输入菜单名称!");
+                return;
+            }
+            if(level == 2 && parentId == "") {
+                parent.layer.msg("请选择父级菜单!");
+                return;
+            }
+            if("" != orderNum) {
+                var regu = /^[1-9]\d*$/;
+                if (!regu.test(orderNum)) {
+                    parent.layer.msg("序号只能为数字!");
+                    return;
+                }
+            }
             if(description != "") {
                 if(description.length > 15) {
                     parent.layer.msg("描述字符请小于15个字符!");
@@ -71,6 +86,7 @@ function selectBackMenuByLevel() {
             cache : false,
             async : false,
             success : function(data) {
+                $("#parentId").append("<option value=''>请选择父级菜单</option>");
                 for(var i =0;i<data.length;i++){
                     $("#parentId").append("<option value='"+data[i].backMenuId+"'>"+data[i].name+"</option>");
                 }
@@ -134,6 +150,21 @@ function editBackMenu(backMenuId) {
             var backUrl = body.find("#url").val();
             var orderNum = body.find("#orderNum").val();
             var description = body.find("#description").val();
+            if(backMenuName == "") {
+                parent.layer.msg("请输入菜单名称!");
+                return;
+            }
+            if(level == 2 && parentId == "") {
+                parent.layer.msg("请选择父级菜单!");
+                return;
+            }
+            if("" != orderNum) {
+                var regu = /^[1-9]\d*$/;
+                if (!regu.test(orderNum)) {
+                    parent.layer.msg("序号只能为数字!");
+                    return;
+                }
+            }
             if(description != "") {
                 if(description.length > 15) {
                     parent.layer.msg("描述字符请小于15个字符!");

@@ -54,10 +54,11 @@ public class BackUserController {
             pageNo = 1;
         }
         if (pageSize == null || pageSize.equals("")) {
-            pageSize = 3;
+            pageSize = 10;
         }
         PageUtil.startPage(pageNo, pageSize);
         BackUserExample example = new BackUserExample();
+
         if(backUser.getUserType().equals(1)) {
             example.createCriteria().andUserTypeEqualTo(2);
         } else if(backUser.getUserType().equals(2)) {
@@ -66,7 +67,7 @@ public class BackUserController {
         if(StringUtils.isNotBlank(username)) {
             example.createCriteria().andUserNameLike("%" + username + "%");
         }
-
+        //example.setOrderByClause("back_user_id DESC");
         List<BackUser> backUserList = backUserService.selectByExample(example);
         PageData pd = new PageData(backUserList);
         PageTag<PageData> pt = new PageTag<PageData>(pd);
@@ -197,9 +198,16 @@ public class BackUserController {
 				criteria.andBackUserIdEqualTo(backUserId);
 				backUserRoleService.deleteByExample(example);*/
                 BackUserRole backUserRole = backUserRoleService.selectByPrimaryKey(backUserRoleId);
-                backUserRole.setBackRoleId(roleId);
-                backUserRole.setBackUserId(backUser.getBackUserId());
-                backUserRoleService.updateByPrimaryKeySelective(backUserRole);
+                if(null == backUserRole) {
+                    backUserRole = new BackUserRole();
+                    backUserRole.setBackRoleId(roleId);
+                    backUserRole.setBackUserId(backUser.getBackUserId());
+                    backUserRoleService.insert(backUserRole);
+                } else {
+                    backUserRole.setBackRoleId(roleId);
+                    backUserRole.setBackUserId(backUser.getBackUserId());
+                    backUserRoleService.updateByPrimaryKeySelective(backUserRole);
+                }
             } else {
                 if(null != backUserRoleId && "".equals(backUserRoleId)) {
                     backUserRoleService.deleteByPrimaryKey(backUserRoleId);

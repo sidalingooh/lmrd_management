@@ -37,15 +37,27 @@ function entryBackUser() {
                 parent.layer.msg("用户名不能为空!");
                 return;
             }
+            if(password == "") {
+                parent.layer.msg("密码不能为空!");
+                return;
+            }
             if(realName == "") {
                 parent.layer.msg("真实姓名不能为空!");
+                return;
+            }
+            if(userType == "") {
+                parent.layer.msg("请选择用户类型!");
                 return;
             }
             if(mobile == "") {
                 parent.layer.msg("手机号码不能为空!");
                 return;
             }
-            if(roleId == "") {
+            if(!(/^1(3|4|5|7|8|9)\d{9}$/.test(mobile))){
+                parent.layer.msg("请输入正确的手机号码!");
+                return false;
+            }
+            if(roleId == "" || roleId == undefined) {
                 parent.layer.msg("请选择角色!");
                 return;
             }
@@ -60,13 +72,13 @@ function entryBackUser() {
                     "userType" : userType,
                     "mobile" : mobile,
                     "email" : email,
-                    "roleId" : roleId,
-                    "provinceId" : provinceId,
+                    "roleId" : roleId
+                    /*"provinceId" : provinceId,
                     "provinceName" : provinceName,
                     "cityId" : cityId,
                     "cityName" : cityName,
                     "districtId" : districtId,
-                    "districtName" : districtName
+                    "districtName" : districtName*/
                 },
                 cache : false,
                 async : false,
@@ -147,12 +159,12 @@ function editBackUser(backUserId) {
             var email = body.find("#email").val();
             var backRoleId = body.find("#backRoleId").val();
             var backUserRoleId = body.find("#backUserRoleId").val();
-            var provinceId = body.find("#provinceId").val();
+           /* var provinceId = body.find("#provinceId").val();
             var provinceName = body.find("#provinceId option:selected").text();
             var cityId = body.find("#cityId").val();
             var cityName = body.find("#cityId option:selected").text();
             var districtId = body.find("#districtId").val();
-            var districtName = body.find("#districtId option:selected").text();
+            var districtName = body.find("#districtId option:selected").text();*/
             //var userType = $("#addUserType").val();
             //var roleId = $("input[name='roleId']:checked").val();
             var roleId = body.find("input[name='roleId']:checked").val();
@@ -164,11 +176,19 @@ function editBackUser(backUserId) {
                 parent.layer.msg("真实姓名不能为空!");
                 return;
             }
+            if(userType == "") {
+                parent.layer.msg("请选择用户类型!");
+                return;
+            }
             if(mobile == "") {
                 parent.layer.msg("手机号码不能为空!");
                 return;
             }
-            if(roleId == "") {
+            if(!(/^1(3|4|5|7|8|9)\d{9}$/.test(mobile))){
+                parent.layer.msg("请输入正确的手机号码!");
+                return false;
+            }
+            if(roleId == "" || roleId == undefined) {
                 parent.layer.msg("请选择角色!");
                 return;
             }
@@ -186,13 +206,13 @@ function editBackUser(backUserId) {
                     "roleId" : roleId,
                     "backUserId" : backUserId,
                     "backRoleId" : backRoleId,
-                    "backUserRoleId" : backUserRoleId,
-                    "provinceId" : provinceId,
+                    "backUserRoleId" : backUserRoleId
+                    /*"provinceId" : provinceId,
                     "provinceName" : provinceName,
                     "cityId" : cityId,
                     "cityName" : cityName,
                     "districtId" : districtId,
-                    "districtName" : districtName
+                    "districtName" : districtName*/
                 },
                 cache : false,
                 async : false,

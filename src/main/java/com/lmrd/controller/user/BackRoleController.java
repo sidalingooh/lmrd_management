@@ -56,10 +56,6 @@ public class BackRoleController {
     @RequestMapping(value = "list")
     public String list(HttpServletRequest request, Integer pageNo,
                        String peropoty, Integer pageSize){
-        BackUser backUser = (BackUser) request.getSession().getAttribute("loginUser");
-        if(!"1".equals(backUser.getUserType()) && !"0".equals(backUser.getUserType())) {
-            return "backRole/list";
-        }
         if (pageNo == null || pageNo.equals("")) {
             pageNo = 1;
         }
@@ -68,6 +64,7 @@ public class BackRoleController {
         }
         PageUtil.startPage(pageNo, pageSize);
         BackRoleExample example = new BackRoleExample();
+        example.setOrderByClause("back_role_id DESC");
         List<BackRole> backRoleList = backRoleService.selectByExample(example);
         PageData pd = new PageData(backRoleList);
         PageTag<PageData> pt = new PageTag<PageData>(pd);

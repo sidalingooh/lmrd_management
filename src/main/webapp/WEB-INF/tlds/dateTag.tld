@@ -3,7 +3,7 @@
 	<tlib-version>1.1</tlib-version>
 	<jsp-version>1.2</jsp-version>
 	<short-name>date</short-name> 
-	<uri>http://sswh.MeTo.cn/tags/date</uri>
+	<uri>http://lmrd.cn/tags/date</uri>
 	<tag>
 		<name>date</name>
 		<tag-class>com.lmrd.util.tag.DateTag</tag-class>

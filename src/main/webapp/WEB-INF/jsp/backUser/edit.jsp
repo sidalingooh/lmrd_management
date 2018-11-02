@@ -1,124 +1,167 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="../../jsp/common/common.jsp"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8" %>
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<%@include file="../../jsp/common/common.jsp" %>
 <title>编辑用户</title>
-
-<body>
-<form id="form1" class="modal_x" method="post">
-        <input class="layui-input" id="backUserId" name="backUserId" value="${backUser.backUserId}" type="hidden" />
-        <input class="layui-input" id="backRoleId" name="backRoleId" value="${backUserRole.backRoleId}" type="hidden" />
-        <input class="layui-input" id="backUserRoleId" name="backUserRoleId" value="${backUserRole.backUserRoleId}" type="hidden" />
-      <table class="modal_table">
-      <tbody>
-      <tr >
-      <td >用户名</td>
-      <td ><input class="layui-input" id="addUaerName" name="addUaerName" value="${backUser.userName}" type="text" disabled="disabled"/></td>
-      </tr>
-      <tr >
-      <td >姓名</td>
-      <td ><input class="layui-input" id="realName" name="realName" value="${backUser.realName}" type="text" /></td>
-      </tr>
-      <%-- <tr >
-      <td >密码</td>
-      <td ><input class="layui-input" id="password" name="password" value="${backUser.password}" type="password" /></td>
-      </tr> --%>
-      <tr >
-      <td >启用</td>
-      <td ><input name="enable" id="enable" title="启用" style="display: block;" <c:if test="${backUser.enable ne 1}">checked="checked"</c:if>  type="checkbox"></td>
-      </tr>
-      <tr >
-      <td >用户类型</td>
-      <td >
-      <select name="addUserType" id="addUserType"  class="layui-input layui-unselect"  onchange="selectBackRoleByUserTypeEdit();">
-      <c:if test="${loginUser.userType eq '0' and loginUser.backUserId eq backUser.backUserId}">
-      	<option value="0" <c:if test="${backUser.userType eq '0'}">selected="selected"</c:if>>超级管理员</option>
-      </c:if>
-      <c:if test="${loginUser.backUserId ne backUser.backUserId}">
-      	<option value="1" <c:if test="${backUser.userType eq '1'}">selected="selected"</c:if>>管理员</option>
-      	<option value="2" <c:if test="${backUser.userType eq '2'}">selected="selected"</c:if>>普通用户</option>
-      </c:if>
-
-
-      </select>
-      </td>
-      </tr>
-      <tr >
-            <td >所属组织机构</td>
-            <td >
-                  <select id="provinceId" name="provinceId" onclick="getCityByProvince();" class="layui-input layui-unselect" >
-                        <option value=''>-请选择-</option>
+</head><body class="body">
+<form id="form1" class="layui-form" method="post">
+      <div class="layui-form-item">
+            <label class="layui-form-label">用户名</label>
+            <div class="layui-input-block">
+                  <input type="text" name="addUaerName" id="addUaerName" lay-verify="title" autocomplete="off" placeholder="请输用户名" class="layui-input" value="${backUser.userName}">
+                  <input type="hidden" name="backUserId" id="backUserId" value="${backUser.backUserId}">
+                  <input type="hidden" name="backRoleId" id="backRoleId" value="${backUserRole.backRoleId}" />
+                  <input type="hidden" name="backUserRoleId" id="backUserRoleId" value="${backUserRole.backUserRoleId}" />
+            </div>
+      </div>
+      <div class="layui-form-item">
+            <label class="layui-form-label">密码</label>
+            <div class="layui-input-block">
+                  <input type="password" name="password" id="password" lay-verify="title" autocomplete="off" placeholder="请输密码" class="layui-input" value="${backUser.password}">
+            </div>
+      </div>
+      <div class="layui-form-item">
+            <label class="layui-form-label">姓名</label>
+            <div class="layui-input-block">
+                  <input type="text" name="realName" id="realName" lay-verify="title" autocomplete="off" placeholder="请输姓名" class="layui-input" value="${backUser.realName}">
+            </div>
+      </div>
+      <div class="layui-form-item">
+            <label class="layui-form-label">启用</label>
+            <div class="layui-input-block">
+                  <input type="checkbox"  <c:if test="${backUser.enable eq 0}">checked=""</c:if> name="enable" id="enable" lay-skin="switch" lay-filter="switchTest" lay-text="是|否">
+            </div>
+      </div>
+      <div class="layui-form-item">
+            <label class="layui-form-label">用户类型</label>
+            <div class="layui-input-inline">
+                  <select name="addUserType" id="addUserType" lay-filter="selectBackRoleByUserType">
+                        <option value="">请选择用户类型</option>
+                        <option value="1" <c:if test="${backUser.userType eq 1}">selected</c:if>>管理员</option>
+                        <option value="2" <c:if test="${backUser.userType eq 2}">selected</c:if>>普通用户</option>
+                        <option value="3" <c:if test="${backUser.userType eq 3}">selected</c:if>>代理商</option>
                   </select>
-                  <select id="cityId" name="cityId" onclick="getDistrictByCity();" class="layui-input layui-unselect" >
-                        <option value=''>-请选择-</option>
-                  </select>
-                  <select id="districtId" name="districtId" class="layui-input layui-unselect" >
-                        <option value=''>-请选择-</option>
-                  </select>
-            </td>
-      </tr>
-      <tr >
-      <td >手机号码</td>
-      <td ><input class="layui-input" id="mobile" name="mobile" value="${backUser.mobile}" type="text" /></td>
-      </tr>
-      <tr >
-      <td >Email</td>
-      <td ><input class="layui-input" id="email" name="email" value="${backUser.email}" type="text" /></td>
-      </tr>
-      <tr >
-      <td >对应岗位</td>
-      <td  id="roleTd">
-      
-      </td>
-      </tr>
-      </tbody>
-      </table>
-      </form>
-        <!-- End #tab2 -->
-      
+            </div>
+      </div>
+      <div class="layui-form-item">
+            <label class="layui-form-label">手机号码</label>
+            <div class="layui-input-block">
+                  <input type="text" id="mobile" name="mobile" lay-verify="required" placeholder="请输入手机号码" autocomplete="off" class="layui-input" value="${backUser.mobile}" >
+            </div>
+      </div>
+      <div class="layui-form-item">
+            <label class="layui-form-label">Email</label>
+            <div class="layui-input-block">
+                  <input type="text" id="email" name="email" lay-verify="required" placeholder="请输入Email" autocomplete="off" class="layui-input" value="${backUser.email}">
+            </div>
+      </div>
+      <div class="layui-form-item">
+            <label class="layui-form-label">角色</label>
+            <div class="layui-input-block" id="roleTd">
+                  <%--<input type="radio" name="roleId" id="roleId0" value="15" title="运营">--%>
+            </div>
+      </div>
+      <%--<div class="layui-form-item">
+          <div class="layui-input-block">
+              <button class="layui-btn" lay-submit="" lay-filter="form1">立即提交</button>
+              <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+          </div>
+      </div>--%>
+</form>
 </body>
 <script src="${ctx}/js/backUser/backUser.js"></script>
-<script type="text/javascript">
-selectBackRoleByUserTypeEdit();
-
-function selectBackRoleByUserTypeEdit() {
-	var userType = $("#addUserType").val();
-	var backRoleId = $("#backRoleId").val();
-	var html = "";
-	if(userType=="") {
-		$("#roleTd").html("");
-	} else {
-		$.ajax({
-			url : rootPath+"/backRole/selectBackRoleByUserType",
-			type : "post",
-			data : {
-				"userType" : userType
-			},
-			cache : false,
-			async : false,
-			success : function(data) {
-				for(var i =0;i<data.length;i++){
-					if("" != backRoleId &&  backRoleId == data[i].backRoleId) {
-						html+="<span class='roleSpan' style='margin-left:10px;'><label><input type='radio' checked='checked' name='roleId' id='roleId"+i+"' value='"+data[i].backRoleId+"' />"+data[i].name+"</label></span>";
-					} else {
-						html+="<span class='roleSpan' style='margin-left:10px;'><label><input type='radio' name='roleId' id='roleId"+i+"' value='"+data[i].backRoleId+"' />"+data[i].name+"</label></span>";
-					}
-
-					if((i+1)%4==0) {
-						html+="<br/>";
-					}
-					//$("#parentId").append("<option value='"+data[i].backMenuId+"'>"+data[i].name+"</option>");
-				}
-			}
-		});
-	}
-	$("#roleTd").html(html);
-}
-getAllProvince(${backUser.provinceId});
-getCityByProvince(${backUser.cityId})
-getDistrictByCity(${backUser.districtId});
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function(){
+        var form = layui.form
+            ,layer = layui.layer
+            ,layedit = layui.layedit;
 
 
+        $(".layui-fixbar").remove();
+        //创建一个编辑器
+        var editIndex = layedit.build('LAY_demo_editor');
+
+        //自定义验证规则
+        /*form.verify({
+            title: function(value){
+                if(value.length < 5){
+                    return '标题至少得5个字符啊';
+                }
+            }
+            ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+            ,content: function(value){
+                layedit.sync(editIndex);
+            }
+        });*/
+
+        //监听指定开关
+        form.on('switch(switchTest)', function(data){
+            /*layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
+                offset: '6px'
+            });*/
+            //layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+        });
+
+        //
+        form.on('select(selectBackRoleByUserType)', function(data){
+            //layer.msg(data.value);
+            selectBackRoleByUserTypeEdit();
+            form.render();
+            /*layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
+                offset: '6px'
+            });*/
+            //layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+        });
+
+        //监听提交
+        form.on('submit(form1)', function(data){
+            layer.alert(JSON.stringify(data.field), {
+                title: '最终的提交信息'
+            });
+            return false;
+        });
+
+
+    });
+
+    selectBackRoleByUserTypeEdit();
+
+    function selectBackRoleByUserTypeEdit() {
+        var userType = $("#addUserType").val();
+        var backRoleId = $("#backRoleId").val();
+        var html = "";
+        if(userType=="") {
+            $("#roleTd").html("");
+        } else {
+            $.ajax({
+                url : rootPath+"/backRole/selectBackRoleByUserType",
+                type : "post",
+                data : {
+                    "userType" : userType
+                },
+                cache : false,
+                async : false,
+                success : function(data) {
+                    for(var i =0;i<data.length;i++){
+                        if("" != backRoleId &&  backRoleId == data[i].backRoleId) {
+                            html+="<input type='radio' checked='checked' name='roleId' id='roleId"+i+"' value='"+data[i].backRoleId+"' title='"+data[i].name+"'/>";
+                        } else {
+                            html+="<input type='radio' name='roleId' id='roleId"+i+"' value='"+data[i].backRoleId+"' title='"+data[i].name+"'/>";
+                        }
+
+                        if((i+1)%4==0) {
+                            html+="<br/>";
+                        }
+                        //$("#parentId").append("<option value='"+data[i].backMenuId+"'>"+data[i].name+"</option>");
+                    }
+
+                    //$("#roleTd").render();
+                }
+            });
+        }
+        $("#roleTd").html(html);
+        layui.use(['form'], function(){
+            layui.form.render();
+        });
+    }
 </script>
 </html>

@@ -133,7 +133,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.lmrd.entity.user.BackUser">
+  <insert id="insert" parameterType="com.lmrd.entity.user.BackUser" useGeneratedKeys="true" keyProperty="backUserId" keyColumn="backUserId">
     <!--
     @mbg.generated
     -->
@@ -148,7 +148,7 @@
       #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}, #{delTime,jdbcType=BIGINT}, 
       #{version,jdbcType=BIGINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.lmrd.entity.user.BackUser">
+  <insert id="insertSelective" parameterType="com.lmrd.entity.user.BackUser" useGeneratedKeys="true" keyProperty="backUserId" keyColumn="backUserId">
     <!--
     @mbg.generated
     -->

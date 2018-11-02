@@ -3,7 +3,7 @@
 	<tlib-version>1.1</tlib-version>
 	<jsp-version>1.2</jsp-version>
 	<short-name>phone</short-name> 
-	<uri>http://sswh.MeTo.cn/tags/telphone</uri>
+	<uri>http://lmrd.cn/tags/telphone</uri>
 	<tag>
 		<name>phone</name>
 		<tag-class>com.lmrd.util.tag.TelphoneTag</tag-class>

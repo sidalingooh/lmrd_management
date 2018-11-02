@@ -54,9 +54,9 @@ spring:
 
 #debug: true
 
-#logging:
-#  level:
-#    com.dhc.dao: DEBUG
+logging:
+  level:
+    com.lmrd.dao: DEBUG
 
 
 mybatis:

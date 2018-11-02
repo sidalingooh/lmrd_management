@@ -1,60 +1,49 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8" %>
 <!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <%@include file="../../jsp/common/common.jsp" %>
-<title>添加用户</title>
+<title>添加菜单</title>
 </head><body class="body">
 <form id="form1" class="layui-form" method="post">
     <div class="layui-form-item">
-        <label class="layui-form-label">用户名</label>
+        <label class="layui-form-label">名称</label>
         <div class="layui-input-block">
-            <input type="text" name="addUaerName" id="addUaerName" lay-verify="title" autocomplete="off" placeholder="请输入用户名" class="layui-input">
+            <input type="text" name="backMenuName" id="backMenuName" lay-verify="title" autocomplete="off" placeholder="请输入名称" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">密码</label>
-        <div class="layui-input-block">
-            <input type="password" name="password" id="password" lay-verify="title" autocomplete="off" placeholder="请输入密码" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">姓名</label>
-        <div class="layui-input-block">
-            <input type="text" name="realName" id="realName" lay-verify="title" autocomplete="off" placeholder="请输入姓名" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">启用</label>
-        <div class="layui-input-block">
-            <input type="checkbox" checked="" name="enable" id="enable" lay-skin="switch" lay-filter="switchTest" lay-text="是|否">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">用户类型</label>
+        <label class="layui-form-label">菜单级别</label>
         <div class="layui-input-inline">
-            <select name="addUserType" id="addUserType" lay-filter="selectBackRoleByUserType">
-                <option value="">请选择用户类型</option>
-                <option value="1">管理员</option>
-                <option value="2">普通用户</option>
-                <option value="3">代理商</option>
+            <select name="level" id="level" lay-filter="selectBackMenuByLevel">
+                <option value="1">一级菜单</option>
+                <option value="2">二级菜单</option>
             </select>
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">手机号码</label>
+        <label class="layui-form-label">父级菜单</label>
+        <div class="layui-input-inline">
+            <select name="parentId" id="parentId" >
+                <option value="0">无</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">链接</label>
         <div class="layui-input-block">
-            <input type="text" id="mobile" name="mobile" lay-verify="required" placeholder="请输入手机号码" autocomplete="off" class="layui-input">
+            <input type="text" name="url" id="url" lay-verify="title" autocomplete="off" placeholder="请输入链接" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">Email</label>
+        <label class="layui-form-label">序号</label>
         <div class="layui-input-block">
-            <input type="text" id="email" name="email" lay-verify="required" placeholder="请输入Email" autocomplete="off" class="layui-input">
+            <input type="text" name="orderNum" id="orderNum" lay-verify="title" autocomplete="off" placeholder="请输入序号" class="layui-input">（从小到大排序）
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">角色</label>
-        <div class="layui-input-block" id="roleTd">
-            <%--<input type="radio" name="roleId" id="roleId0" value="15" title="运营">--%>
+        <label class="layui-form-label">描述</label>
+        <div class="layui-input-block">
+            <input type="text" name="description" id="description" lay-verify="title" autocomplete="off" placeholder="请输入描述" class="layui-input">
         </div>
     </div>
     <%--<div class="layui-form-item">
@@ -65,9 +54,8 @@
     </div>--%>
 </form>
 </body>
-<script src="${ctx}/js/backUser/backUser.js"></script>
+<script src="${ctx}/js/backUser/backMenu.js"></script>
 <script>
-    selectBackRoleByUserType();
     layui.use(['form', 'layedit', 'laydate'], function(){
         var form = layui.form
             ,layer = layui.layer
@@ -100,9 +88,9 @@
         });
 
         //
-        form.on('select(selectBackRoleByUserType)', function(data){
+        form.on('select(selectBackMenuByLevel)', function(data){
             //layer.msg(data.value);
-            selectBackRoleByUserType();
+            selectBackMenuByLevel();
             form.render();
             /*layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
                 offset: '6px'
@@ -110,13 +98,6 @@
             //layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
         });
 
-        //监听提交
-        form.on('submit(form1)', function(data){
-            layer.alert(JSON.stringify(data.field), {
-                title: '最终的提交信息'
-            });
-            return false;
-        });
 
 
     });
