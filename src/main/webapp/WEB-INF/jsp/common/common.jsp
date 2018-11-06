@@ -30,6 +30,7 @@
 <script type="text/javascript" src="${ctx}/js/layer/laydate.js"></script>--%>
 <script type="text/javascript" src="${ctx}/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="${ctx}/js/kkpager.js"></script>
+<script type="text/javascript" src="${ctx}/js/page.js"></script>
 <script type="text/javascript" src="${ctx}/frame/layui/layui.js"></script>
 <script type="text/javascript" src="${ctx}/frame/static/js/vip_comm.js"></script>
 

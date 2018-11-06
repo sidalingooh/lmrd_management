@@ -173,9 +173,10 @@ public class PageTag4top<T> extends BodyTagSupport {
 			 }
 			 }
 			 // 如果后面页数过多,显示"..."
-			 /*if (end < pageCount - 2) {
-			 sb.append("<span class=\"page_pn\">&hellip;</span>\r\n");
-			 }*/
+			 if (end < pageCount - 2) {
+			 	//sb.append("<span class=\"page_pn\">&hellip;</span>\r\n");
+				 sb.append("<span href=\"javascript:;\" title=\"...\" class=\"layui-laypage-prev layui-disabled\" >&hellip;</span>");
+			 }
 			 if (end < pageCount - 1) {
 			 sb.append("<a class=\"number\"  href=\"#\" onclick=\"javascript:turnOverPage" + formName + "(")
 			 .append(pageCount - 1).append(")\">")

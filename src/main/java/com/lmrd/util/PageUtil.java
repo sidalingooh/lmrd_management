@@ -9,6 +9,7 @@ import com.foundationdb.sql.parser.StatementNode;
 import com.foundationdb.sql.unparser.NodeToString;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
+import net.sf.jsqlparser.JSQLParserException;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.plugin.*;
@@ -68,8 +69,26 @@ public class PageUtil implements Interceptor {
 		private static final SQLParser PARSER = new SQLParser();
 
 		public String removeOrderBy(String sql) throws StandardException {
-			StatementNode stmt = PARSER.parseStatement(sql);
-			return toString(stmt);
+			/*StatementNode stmt = PARSER.parseStatement(sql);
+			System.out.println("sql:"+sql);
+			System.out.println("stmt:"+toString(stmt));
+			return toString(stmt);*/
+			SqlServerParse ssp = new SqlServerParse();
+			try {
+				return ssp.removeOrderBy(sql);
+			} catch (JSQLParserException e) {
+
+				e.printStackTrace();
+				return sql;
+			}
+
+
+			/*Statement stmt = CCJSqlParserUtil.parse(sql);
+			Select select = (Select) stmt;
+			SelectBody selectBody = select.getSelectBody();
+			processSelectBody(selectBody);
+			return select.toString();*/
+
 		}
 
 		@Override

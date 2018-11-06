@@ -13,7 +13,7 @@
 <div class="layui-layout layui-layout-admin"> <!-- 添加skin-1类可手动修改主题为纯白，添加skin-2类可手动修改主题为蓝白 -->
     <!-- header -->
     <div class="layui-header my-header">
-        <a href="index.html">
+        <a >
             <!--<img class="my-header-logo" src="" alt="logo">-->
             <div class="my-header-logo">后台管理系统</div>
         </a>
@@ -135,7 +135,7 @@
             ,$          = layui.jquery;
 
         // 顶部左侧菜单生成 [请求地址,过滤ID,是否展开,携带参数]
-        vipNav.top_left('${ctx}/json/nav_top_left.json','side-top-left',false);
+        //vipNav.top_left('${ctx}/json/nav_top_left.json','side-top-left',false);
         // 主体菜单生成 [请求地址,过滤ID,是否展开,携带参数]
         vipNav.main('${ctx}/selectMenuByUser','side-main',false);
 

@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lmrd.dao.industryClassification.LmIndustryClassificationMapper">
+  <resultMap id="BaseResultMap" type="com.lmrd.entity.industryClassification.LmIndustryClassification">
+    <!--
+    @mbg.generated
+    -->
+    <id column="Industry_classification_id" jdbcType="BIGINT" property="industryClassificationId" />
+    <result column="Industry_classification_name" jdbcType="VARCHAR" property="industryClassificationName" />
+    <result column="Industry_classification_code" jdbcType="VARCHAR" property="industryClassificationCode" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+    <result column="last_level" jdbcType="INTEGER" property="lastLevel" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+    <result column="delete_time" jdbcType="BIGINT" property="deleteTime" />
+    <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbg.generated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbg.generated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbg.generated
+    -->
+    Industry_classification_id, Industry_classification_name, Industry_classification_code, 
+    level, parent_id, last_level, create_time, update_time, delete_time, is_delete
+  </sql>
+  <select id="selectByExample" parameterType="com.lmrd.entity.industryClassification.LmIndustryClassificationExample" resultMap="BaseResultMap">
+    <!--
+    @mbg.generated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from lm_industry_classification
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--
+    @mbg.generated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from lm_industry_classification
+    where Industry_classification_id = #{industryClassificationId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--
+    @mbg.generated
+    -->
+    delete from lm_industry_classification
+    where Industry_classification_id = #{industryClassificationId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lmrd.entity.industryClassification.LmIndustryClassificationExample">
+    <!--
+    @mbg.generated
+    -->
+    delete from lm_industry_classification
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lmrd.entity.industryClassification.LmIndustryClassification">
+    <!--
+    @mbg.generated
+    -->
+    insert into lm_industry_classification (Industry_classification_id, Industry_classification_name, 
+      Industry_classification_code, level, parent_id, 
+      last_level, create_time, update_time, 
+      delete_time, is_delete)
+    values (#{industryClassificationId,jdbcType=BIGINT}, #{industryClassificationName,jdbcType=VARCHAR}, 
+      #{industryClassificationCode,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, #{parentId,jdbcType=BIGINT}, 
+      #{lastLevel,jdbcType=INTEGER}, #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}, 
+      #{deleteTime,jdbcType=BIGINT}, #{isDelete,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lmrd.entity.industryClassification.LmIndustryClassification">
+    <!--
+    @mbg.generated
+    -->
+    insert into lm_industry_classification
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="industryClassificationId != null">
+        Industry_classification_id,
+      </if>
+      <if test="industryClassificationName != null">
+        Industry_classification_name,
+      </if>
+      <if test="industryClassificationCode != null">
+        Industry_classification_code,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="lastLevel != null">
+        last_level,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="deleteTime != null">
+        delete_time,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="industryClassificationId != null">
+        #{industryClassificationId,jdbcType=BIGINT},
+      </if>
+      <if test="industryClassificationName != null">
+        #{industryClassificationName,jdbcType=VARCHAR},
+      </if>
+      <if test="industryClassificationCode != null">
+        #{industryClassificationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="lastLevel != null">
+        #{lastLevel,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="deleteTime != null">
+        #{deleteTime,jdbcType=BIGINT},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lmrd.entity.industryClassification.LmIndustryClassificationExample" resultType="java.lang.Long">
+    <!--
+    @mbg.generated
+    -->
+    select count(*) from lm_industry_classification
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbg.generated
+    -->
+    update lm_industry_classification
+    <set>
+      <if test="record.industryClassificationId != null">
+        Industry_classification_id = #{record.industryClassificationId,jdbcType=BIGINT},
+      </if>
+      <if test="record.industryClassificationName != null">
+        Industry_classification_name = #{record.industryClassificationName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.industryClassificationCode != null">
+        Industry_classification_code = #{record.industryClassificationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.level != null">
+        level = #{record.level,jdbcType=INTEGER},
+      </if>
+      <if test="record.parentId != null">
+        parent_id = #{record.parentId,jdbcType=BIGINT},
+      </if>
+      <if test="record.lastLevel != null">
+        last_level = #{record.lastLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.deleteTime != null">
+        delete_time = #{record.deleteTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.isDelete != null">
+        is_delete = #{record.isDelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbg.generated
+    -->
+    update lm_industry_classification
+    set Industry_classification_id = #{record.industryClassificationId,jdbcType=BIGINT},
+      Industry_classification_name = #{record.industryClassificationName,jdbcType=VARCHAR},
+      Industry_classification_code = #{record.industryClassificationCode,jdbcType=VARCHAR},
+      level = #{record.level,jdbcType=INTEGER},
+      parent_id = #{record.parentId,jdbcType=BIGINT},
+      last_level = #{record.lastLevel,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=BIGINT},
+      delete_time = #{record.deleteTime,jdbcType=BIGINT},
+      is_delete = #{record.isDelete,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lmrd.entity.industryClassification.LmIndustryClassification">
+    <!--
+    @mbg.generated
+    -->
+    update lm_industry_classification
+    <set>
+      <if test="industryClassificationName != null">
+        Industry_classification_name = #{industryClassificationName,jdbcType=VARCHAR},
+      </if>
+      <if test="industryClassificationCode != null">
+        Industry_classification_code = #{industryClassificationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="lastLevel != null">
+        last_level = #{lastLevel,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="deleteTime != null">
+        delete_time = #{deleteTime,jdbcType=BIGINT},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Industry_classification_id = #{industryClassificationId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lmrd.entity.industryClassification.LmIndustryClassification">
+    <!--
+    @mbg.generated
+    -->
+    update lm_industry_classification
+    set Industry_classification_name = #{industryClassificationName,jdbcType=VARCHAR},
+      Industry_classification_code = #{industryClassificationCode,jdbcType=VARCHAR},
+      level = #{level,jdbcType=INTEGER},
+      parent_id = #{parentId,jdbcType=BIGINT},
+      last_level = #{lastLevel,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT},
+      delete_time = #{deleteTime,jdbcType=BIGINT},
+      is_delete = #{isDelete,jdbcType=INTEGER}
+    where Industry_classification_id = #{industryClassificationId,jdbcType=BIGINT}
+  </update>
+
+  <!--<select id="selectIndustryClassificationList" parameterType="java.lang.Long" resultMap="BaseResultMap">
+      select
+        <include refid="Base_Column_List" />
+      from lm_industry_classification
+        where parent_id = 0
+  </select>-->
+</mapper>

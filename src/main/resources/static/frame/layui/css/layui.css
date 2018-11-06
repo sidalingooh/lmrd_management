@@ -3342,7 +3342,8 @@ body .layui-table-tips .layui-layer-content {
     position: fixed;
     right: 15px;
     bottom: 15px;
-    z-index: 9999
+    z-index: 9999;
+    display:none;
 }
 
 .layui-fixbar li {
@@ -3353,10 +3354,11 @@ body .layui-table-tips .layui-layer-content {
     text-align: center;
     cursor: pointer;
     font-size: 30px;
-    /*background-color: #9F9F9F;*/
+    background-color: #9F9F9F;
     color: #fff;
     border-radius: 2px;
-    opacity: .95
+    opacity: .95;
+    display:none;
 }
 
 .layui-fixbar li:hover {

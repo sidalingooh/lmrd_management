@@ -67,7 +67,7 @@ public class BackUserController {
         if(StringUtils.isNotBlank(username)) {
             example.createCriteria().andUserNameLike("%" + username + "%");
         }
-        //example.setOrderByClause("back_user_id DESC");
+        example.setOrderByClause("back_user_id DESC");
         List<BackUser> backUserList = backUserService.selectByExample(example);
         PageData pd = new PageData(backUserList);
         PageTag<PageData> pt = new PageTag<PageData>(pd);
