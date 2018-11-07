@@ -72,7 +72,7 @@
                     <c:if test="${user.userType ne '0'}"><a href="javascript:void(0);" class="tab-a-right" onclick="javascript:delBackUser(${user.backUserId});" title="删除">删除</c:if>--%>
                     <div class="layui-btn-group">
                         <%--<button class="layui-btn layui-btn-sm"><i class="layui-icon"></i></button>--%>
-                        <button class="layui-btn layui-btn-sm" onclick="javascript:editBackUser(${user.backUserId});"><i class="layui-icon">&#xe642;</i>编辑</button>
+                        <c:if test="${user.userType ne '0'}"><button class="layui-btn layui-btn-sm" onclick="javascript:editBackUser(${user.backUserId});"><i class="layui-icon">&#xe642;</i>编辑</button></c:if>
                         <c:if test="${user.userType ne '0'}"><button class="layui-btn layui-btn-sm" onclick="javascript:delBackUser(${user.backUserId});"><i class="layui-icon">&#xe640;</i>删除</button></c:if>
                         <%--<button class="layui-btn layui-btn-sm"><i class="layui-icon"></i></button>--%>
                         <%--<button class="layui-btn layui-btn-sm" onclick="javascript:editBackUser(${user.backUserId});"><i class="layui-icon">&#xe63c;</i>详情</button>--%>

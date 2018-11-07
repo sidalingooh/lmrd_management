@@ -1,11 +1,13 @@
 package com.lmrd.util.interceptor;
 
+
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+import java.util.List;
 
 /**
  * 拦截器
@@ -16,6 +18,9 @@ import java.io.PrintWriter;
  */
 @Component
 public class PromiseInterceptor extends HandlerInterceptorAdapter {
+
+	/*@Autowired
+	private BackMenuService backMenuService;*/
 
 	@Override
 	public boolean preHandle(HttpServletRequest request,
@@ -95,6 +100,11 @@ public class PromiseInterceptor extends HandlerInterceptorAdapter {
 				return false;
 			}
 		}
+		/*BackUser backUser = (BackUser)request.getSession().getAttribute("loginUser");
+		List<BackMenu> menuList = backMenuService.selectByBackUserId(backUser.getBackUserId());
+		for (BackMenu menu : menuList) {
+			System.out.println(menu.getName());
+		}*/
 		return super.preHandle(request, response, handler);
 	}
 

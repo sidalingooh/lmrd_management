@@ -33,21 +33,22 @@
         </javaTypeResolver>
 
         <!-- model 包路径 -->
-        <javaModelGenerator targetPackage="com.lmrd.entity.industryClassification"
+        <javaModelGenerator targetPackage="com.lmrd.entity.agent"
                             targetProject="src/main/java">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
 
         <!-- dao xml(sql) 包路径 -->
-        <sqlMapGenerator targetPackage="config.mybatis.mapper.industryClassification"
+        <sqlMapGenerator targetPackage="config.mybatis.mapper.agent"
                          targetProject="src/main/resources">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
         <!-- dao 包路径 -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.lmrd.dao.industryClassification" targetProject="src/main/java">
+                             targetPackage="com.lmrd.dao.agent"
+                         targetProject="src/main/java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
@@ -83,11 +84,16 @@
         <!--<table tableName="back_menu" domainObjectName="BackMenu" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
             <property name="useActualColumnNames" value="false" />
         </table>-->
-        <!--<table tableName="lm_sensitive_word" domainObjectName="ImSensitiveWord" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
+
+       <!-- <table tableName="lm_Industry_classification" domainObjectName="LmIndustryClassification" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
             <property name="useActualColumnNames" value="false" />
         </table>-->
+        <!--<table tableName="lm_sensitive_word" domainObjectName="LmSensitiveWord" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false" /></table>-->
+        <!--<table tableName="lm_enterprise_user" domainObjectName="LmEnterpriseUser" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false" /></table>-->
 
-        <table tableName="lm_Industry_classification" domainObjectName="LmIndustryClassification" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
+        <table tableName="lm_agent" domainObjectName="LmAgent" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
             <property name="useActualColumnNames" value="false" />
         </table>
     </context>

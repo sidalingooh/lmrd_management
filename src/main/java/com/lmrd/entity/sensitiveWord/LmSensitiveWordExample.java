@@ -2,9 +2,9 @@
 *
 * LmSensitiveWordExample.java
 * @author LiuSiGuang
-* @date 2018-11-01
+* @date 2018-11-06
 */
-package com.lmrd.entity.sensitive;
+package com.lmrd.entity.sensitiveWord;
 
 import java.util.ArrayList;
 import java.util.List;

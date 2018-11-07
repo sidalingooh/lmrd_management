@@ -95,11 +95,7 @@
                         var result=json.result;
                         if(result =="0") {
                             window.location.href = rootPath + "/main";
-                        } else if(result == "1"){
-                            layer.msg(json.type);
-                        } else if(result == "2"){
-                            layer.msg(json.type);
-                        }else{
+                        } else{
                             layer.msg(json.type);
                         }
                     }

@@ -87,6 +87,8 @@ function entryBackUser() {
                         parent.layer.closeAll();
                         parent.layer.msg("操作成功!");
                         setTimeout("refreshPage('/backUser/list');",1000);
+                    } else if(data == "userNameRepeat"){
+                        parent.layer.msg("用户名重复请重新输入!");
                     }else{
                         parent.layer.msg("操作失败!");
                     }

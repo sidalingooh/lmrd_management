@@ -13,10 +13,11 @@
     <result column="real_name" jdbcType="VARCHAR" property="realName" />
     <result column="user_type" jdbcType="INTEGER" property="userType" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
-    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+    <result column="agent_id" jdbcType="BIGINT" property="agentId" />
     <result column="create_time" jdbcType="BIGINT" property="createTime" />
     <result column="update_time" jdbcType="BIGINT" property="updateTime" />
-    <result column="del_time" jdbcType="BIGINT" property="delTime" />
+    <result column="delete_time" jdbcType="BIGINT" property="deleteTime" />
+    <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
     <result column="version" jdbcType="BIGINT" property="version" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -87,8 +88,8 @@
     <!--
     @mbg.generated
     -->
-    back_user_id, email, enable, mobile, password, real_name, user_type, user_name, company_id, 
-    create_time, update_time, del_time, version
+    back_user_id, email, enable, mobile, password, real_name, user_type, user_name, agent_id, 
+    create_time, update_time, delete_time, is_delete, version
   </sql>
   <select id="selectByExample" parameterType="com.lmrd.entity.user.BackUserExample" resultMap="BaseResultMap">
     <!--
@@ -139,14 +140,14 @@
     -->
     insert into back_user (back_user_id, email, enable, 
       mobile, password, real_name, 
-      user_type, user_name, company_id, 
-      create_time, update_time, del_time, 
-      version)
+      user_type, user_name, agent_id, 
+      create_time, update_time, delete_time, 
+      is_delete, version)
     values (#{backUserId,jdbcType=BIGINT}, #{email,jdbcType=VARCHAR}, #{enable,jdbcType=INTEGER}, 
       #{mobile,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
-      #{userType,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{companyId,jdbcType=BIGINT}, 
-      #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}, #{delTime,jdbcType=BIGINT}, 
-      #{version,jdbcType=BIGINT})
+      #{userType,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{agentId,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}, #{deleteTime,jdbcType=BIGINT}, 
+      #{isDelete,jdbcType=INTEGER}, #{version,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.lmrd.entity.user.BackUser" useGeneratedKeys="true" keyProperty="backUserId" keyColumn="backUserId">
     <!--
@@ -178,8 +179,8 @@
       <if test="userName != null">
         user_name,
       </if>
-      <if test="companyId != null">
-        company_id,
+      <if test="agentId != null">
+        agent_id,
       </if>
       <if test="createTime != null">
         create_time,
@@ -187,8 +188,11 @@
       <if test="updateTime != null">
         update_time,
       </if>
-      <if test="delTime != null">
-        del_time,
+      <if test="deleteTime != null">
+        delete_time,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
       </if>
       <if test="version != null">
         version,
@@ -219,8 +223,8 @@
       <if test="userName != null">
         #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="companyId != null">
-        #{companyId,jdbcType=BIGINT},
+      <if test="agentId != null">
+        #{agentId,jdbcType=BIGINT},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=BIGINT},
@@ -228,8 +232,11 @@
       <if test="updateTime != null">
         #{updateTime,jdbcType=BIGINT},
       </if>
-      <if test="delTime != null">
-        #{delTime,jdbcType=BIGINT},
+      <if test="deleteTime != null">
+        #{deleteTime,jdbcType=BIGINT},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=INTEGER},
       </if>
       <if test="version != null">
         #{version,jdbcType=BIGINT},
@@ -275,8 +282,8 @@
       <if test="record.userName != null">
         user_name = #{record.userName,jdbcType=VARCHAR},
       </if>
-      <if test="record.companyId != null">
-        company_id = #{record.companyId,jdbcType=BIGINT},
+      <if test="record.agentId != null">
+        agent_id = #{record.agentId,jdbcType=BIGINT},
       </if>
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=BIGINT},
@@ -284,8 +291,11 @@
       <if test="record.updateTime != null">
         update_time = #{record.updateTime,jdbcType=BIGINT},
       </if>
-      <if test="record.delTime != null">
-        del_time = #{record.delTime,jdbcType=BIGINT},
+      <if test="record.deleteTime != null">
+        delete_time = #{record.deleteTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.isDelete != null">
+        is_delete = #{record.isDelete,jdbcType=INTEGER},
       </if>
       <if test="record.version != null">
         version = #{record.version,jdbcType=BIGINT},
@@ -308,10 +318,11 @@
       real_name = #{record.realName,jdbcType=VARCHAR},
       user_type = #{record.userType,jdbcType=INTEGER},
       user_name = #{record.userName,jdbcType=VARCHAR},
-      company_id = #{record.companyId,jdbcType=BIGINT},
+      agent_id = #{record.agentId,jdbcType=BIGINT},
       create_time = #{record.createTime,jdbcType=BIGINT},
       update_time = #{record.updateTime,jdbcType=BIGINT},
-      del_time = #{record.delTime,jdbcType=BIGINT},
+      delete_time = #{record.deleteTime,jdbcType=BIGINT},
+      is_delete = #{record.isDelete,jdbcType=INTEGER},
       version = #{record.version,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -344,8 +355,8 @@
       <if test="userName != null">
         user_name = #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="companyId != null">
-        company_id = #{companyId,jdbcType=BIGINT},
+      <if test="agentId != null">
+        agent_id = #{agentId,jdbcType=BIGINT},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=BIGINT},
@@ -353,8 +364,11 @@
       <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=BIGINT},
       </if>
-      <if test="delTime != null">
-        del_time = #{delTime,jdbcType=BIGINT},
+      <if test="deleteTime != null">
+        delete_time = #{deleteTime,jdbcType=BIGINT},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=INTEGER},
       </if>
       <if test="version != null">
         version = #{version,jdbcType=BIGINT},
@@ -374,10 +388,11 @@
       real_name = #{realName,jdbcType=VARCHAR},
       user_type = #{userType,jdbcType=INTEGER},
       user_name = #{userName,jdbcType=VARCHAR},
-      company_id = #{companyId,jdbcType=BIGINT},
+      agent_id = #{agentId,jdbcType=BIGINT},
       create_time = #{createTime,jdbcType=BIGINT},
       update_time = #{updateTime,jdbcType=BIGINT},
-      del_time = #{delTime,jdbcType=BIGINT},
+      delete_time = #{deleteTime,jdbcType=BIGINT},
+      is_delete = #{isDelete,jdbcType=INTEGER},
       version = #{version,jdbcType=BIGINT}
     where back_user_id = #{backUserId,jdbcType=BIGINT}
   </update>

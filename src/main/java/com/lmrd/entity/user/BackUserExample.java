@@ -2,7 +2,7 @@
 *
 * BackUserExample.java
 * @author LiuSiGuang
-* @date 2018-11-01
+* @date 2018-11-06
 */
 package com.lmrd.entity.user;
 
@@ -693,63 +693,63 @@ public class BackUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andCompanyIdIsNull() {
-            addCriterion("company_id is null");
+        public Criteria andAgentIdIsNull() {
+            addCriterion("agent_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andCompanyIdIsNotNull() {
-            addCriterion("company_id is not null");
+        public Criteria andAgentIdIsNotNull() {
+            addCriterion("agent_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCompanyIdEqualTo(Long value) {
-            addCriterion("company_id =", value, "companyId");
+        public Criteria andAgentIdEqualTo(Long value) {
+            addCriterion("agent_id =", value, "agentId");
             return (Criteria) this;
         }
 
-        public Criteria andCompanyIdNotEqualTo(Long value) {
-            addCriterion("company_id <>", value, "companyId");
+        public Criteria andAgentIdNotEqualTo(Long value) {
+            addCriterion("agent_id <>", value, "agentId");
             return (Criteria) this;
         }
 
-        public Criteria andCompanyIdGreaterThan(Long value) {
-            addCriterion("company_id >", value, "companyId");
+        public Criteria andAgentIdGreaterThan(Long value) {
+            addCriterion("agent_id >", value, "agentId");
             return (Criteria) this;
         }
 
-        public Criteria andCompanyIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("company_id >=", value, "companyId");
+        public Criteria andAgentIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("agent_id >=", value, "agentId");
             return (Criteria) this;
         }
 
-        public Criteria andCompanyIdLessThan(Long value) {
-            addCriterion("company_id <", value, "companyId");
+        public Criteria andAgentIdLessThan(Long value) {
+            addCriterion("agent_id <", value, "agentId");
             return (Criteria) this;
         }
 
-        public Criteria andCompanyIdLessThanOrEqualTo(Long value) {
-            addCriterion("company_id <=", value, "companyId");
+        public Criteria andAgentIdLessThanOrEqualTo(Long value) {
+            addCriterion("agent_id <=", value, "agentId");
             return (Criteria) this;
         }
 
-        public Criteria andCompanyIdIn(List<Long> values) {
-            addCriterion("company_id in", values, "companyId");
+        public Criteria andAgentIdIn(List<Long> values) {
+            addCriterion("agent_id in", values, "agentId");
             return (Criteria) this;
         }
 
-        public Criteria andCompanyIdNotIn(List<Long> values) {
-            addCriterion("company_id not in", values, "companyId");
+        public Criteria andAgentIdNotIn(List<Long> values) {
+            addCriterion("agent_id not in", values, "agentId");
             return (Criteria) this;
         }
 
-        public Criteria andCompanyIdBetween(Long value1, Long value2) {
-            addCriterion("company_id between", value1, value2, "companyId");
+        public Criteria andAgentIdBetween(Long value1, Long value2) {
+            addCriterion("agent_id between", value1, value2, "agentId");
             return (Criteria) this;
         }
 
-        public Criteria andCompanyIdNotBetween(Long value1, Long value2) {
-            addCriterion("company_id not between", value1, value2, "companyId");
+        public Criteria andAgentIdNotBetween(Long value1, Long value2) {
+            addCriterion("agent_id not between", value1, value2, "agentId");
             return (Criteria) this;
         }
 
@@ -873,63 +873,123 @@ public class BackUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andDelTimeIsNull() {
-            addCriterion("del_time is null");
+        public Criteria andDeleteTimeIsNull() {
+            addCriterion("delete_time is null");
             return (Criteria) this;
         }
 
-        public Criteria andDelTimeIsNotNull() {
-            addCriterion("del_time is not null");
+        public Criteria andDeleteTimeIsNotNull() {
+            addCriterion("delete_time is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDelTimeEqualTo(Long value) {
-            addCriterion("del_time =", value, "delTime");
+        public Criteria andDeleteTimeEqualTo(Long value) {
+            addCriterion("delete_time =", value, "deleteTime");
             return (Criteria) this;
         }
 
-        public Criteria andDelTimeNotEqualTo(Long value) {
-            addCriterion("del_time <>", value, "delTime");
+        public Criteria andDeleteTimeNotEqualTo(Long value) {
+            addCriterion("delete_time <>", value, "deleteTime");
             return (Criteria) this;
         }
 
-        public Criteria andDelTimeGreaterThan(Long value) {
-            addCriterion("del_time >", value, "delTime");
+        public Criteria andDeleteTimeGreaterThan(Long value) {
+            addCriterion("delete_time >", value, "deleteTime");
             return (Criteria) this;
         }
 
-        public Criteria andDelTimeGreaterThanOrEqualTo(Long value) {
-            addCriterion("del_time >=", value, "delTime");
+        public Criteria andDeleteTimeGreaterThanOrEqualTo(Long value) {
+            addCriterion("delete_time >=", value, "deleteTime");
             return (Criteria) this;
         }
 
-        public Criteria andDelTimeLessThan(Long value) {
-            addCriterion("del_time <", value, "delTime");
+        public Criteria andDeleteTimeLessThan(Long value) {
+            addCriterion("delete_time <", value, "deleteTime");
             return (Criteria) this;
         }
 
-        public Criteria andDelTimeLessThanOrEqualTo(Long value) {
-            addCriterion("del_time <=", value, "delTime");
+        public Criteria andDeleteTimeLessThanOrEqualTo(Long value) {
+            addCriterion("delete_time <=", value, "deleteTime");
             return (Criteria) this;
         }
 
-        public Criteria andDelTimeIn(List<Long> values) {
-            addCriterion("del_time in", values, "delTime");
+        public Criteria andDeleteTimeIn(List<Long> values) {
+            addCriterion("delete_time in", values, "deleteTime");
             return (Criteria) this;
         }
 
-        public Criteria andDelTimeNotIn(List<Long> values) {
-            addCriterion("del_time not in", values, "delTime");
+        public Criteria andDeleteTimeNotIn(List<Long> values) {
+            addCriterion("delete_time not in", values, "deleteTime");
             return (Criteria) this;
         }
 
-        public Criteria andDelTimeBetween(Long value1, Long value2) {
-            addCriterion("del_time between", value1, value2, "delTime");
+        public Criteria andDeleteTimeBetween(Long value1, Long value2) {
+            addCriterion("delete_time between", value1, value2, "deleteTime");
             return (Criteria) this;
         }
 
-        public Criteria andDelTimeNotBetween(Long value1, Long value2) {
-            addCriterion("del_time not between", value1, value2, "delTime");
+        public Criteria andDeleteTimeNotBetween(Long value1, Long value2) {
+            addCriterion("delete_time not between", value1, value2, "deleteTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsDeleteIsNull() {
+            addCriterion("is_delete is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsDeleteIsNotNull() {
+            addCriterion("is_delete is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsDeleteEqualTo(Integer value) {
+            addCriterion("is_delete =", value, "isDelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsDeleteNotEqualTo(Integer value) {
+            addCriterion("is_delete <>", value, "isDelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsDeleteGreaterThan(Integer value) {
+            addCriterion("is_delete >", value, "isDelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsDeleteGreaterThanOrEqualTo(Integer value) {
+            addCriterion("is_delete >=", value, "isDelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsDeleteLessThan(Integer value) {
+            addCriterion("is_delete <", value, "isDelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsDeleteLessThanOrEqualTo(Integer value) {
+            addCriterion("is_delete <=", value, "isDelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsDeleteIn(List<Integer> values) {
+            addCriterion("is_delete in", values, "isDelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsDeleteNotIn(List<Integer> values) {
+            addCriterion("is_delete not in", values, "isDelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsDeleteBetween(Integer value1, Integer value2) {
+            addCriterion("is_delete between", value1, value2, "isDelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsDeleteNotBetween(Integer value1, Integer value2) {
+            addCriterion("is_delete not between", value1, value2, "isDelete");
             return (Criteria) this;
         }
 

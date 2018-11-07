@@ -1,12 +1,12 @@
 /*
 *
-* ImSensitiveWord.java
+* LmSensitiveWord.java
 * @author LiuSiGuang
-* @date 2018-11-05
+* @date 2018-11-06
 */
 package com.lmrd.entity.sensitiveWord;
 
-public class ImSensitiveWord {
+public class LmSensitiveWord {
     /**
      * 主键
      * 表字段 : lm_sensitive_word.sensitive_word_id

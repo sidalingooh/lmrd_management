@@ -1,8 +1,8 @@
 package com.lmrd.controller.sensitiveWord;
 
 import com.lmrd.entity.base.PageData;
-import com.lmrd.entity.sensitiveWord.ImSensitiveWord;
-import com.lmrd.entity.sensitiveWord.ImSensitiveWordExample;
+import com.lmrd.entity.sensitiveWord.LmSensitiveWord;
+import com.lmrd.entity.sensitiveWord.LmSensitiveWordExample;
 import com.lmrd.service.sensitiveWord.SensitiveWordService;
 import com.lmrd.util.PageUtil;
 import com.lmrd.util.tag.PageTag;
@@ -37,7 +37,7 @@ public class SensitiveWordController {
             pageSize = 10;
         }
         PageUtil.startPage(pageNo, pageSize);
-        ImSensitiveWordExample example = new ImSensitiveWordExample();
+        LmSensitiveWordExample example = new LmSensitiveWordExample();
         //
         //example.createCriteria().andSensitiveTypeEqualTo(sensitiveType);
         if (StringUtils.isNotBlank(sensitiveType)) {
@@ -45,7 +45,7 @@ public class SensitiveWordController {
         }
         //
         example.setOrderByClause("sensitive_word_id DESC");
-        List<ImSensitiveWord> list = sensitiveWordService.selectByExample(example);
+        List<LmSensitiveWord> list = sensitiveWordService.selectByExample(example);
         PageData pd = new PageData(list);
         PageTag<PageData> pt = new PageTag<PageData>(pd);
         request.setAttribute("pt", pt);
@@ -73,7 +73,7 @@ public class SensitiveWordController {
      */
     @RequestMapping(value = "saveSensitiveWord")
     @ResponseBody
-    public String saveSensitiveWord(HttpServletRequest request ,ImSensitiveWord sensitiveWord){
+    public String saveSensitiveWord(HttpServletRequest request ,LmSensitiveWord sensitiveWord){
         int flag = sensitiveWordService.insert(sensitiveWord);
         if(flag>0) {
             return "succ";
@@ -103,7 +103,7 @@ public class SensitiveWordController {
 
     @RequestMapping(value = "/edit")
     public String edit(ModelMap map,Long sensitiveWordId) {
-        ImSensitiveWord sensitiveWord = sensitiveWordService.selectByPrimaryKey(sensitiveWordId);
+        LmSensitiveWord sensitiveWord = sensitiveWordService.selectByPrimaryKey(sensitiveWordId);
         map.addAttribute("sensitiveWord" , sensitiveWord);
         return "sensitiveWord/edit";
     }
@@ -121,7 +121,7 @@ public class SensitiveWordController {
      */
     @RequestMapping(value = "updateSensitiveWord")
     @ResponseBody
-    public String updateSensitiveWord(HttpServletRequest request ,ImSensitiveWord sensitiveWord){
+    public String updateSensitiveWord(HttpServletRequest request , LmSensitiveWord sensitiveWord){
         int flag = sensitiveWordService.updateByPrimaryKeySelective(sensitiveWord);
         if(flag>0) {
             return "succ";

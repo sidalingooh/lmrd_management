@@ -2,12 +2,12 @@
 *
 * LmSensitiveWordMapper.java
 * @author LiuSiGuang
-* @date 2018-11-01
+* @date 2018-11-06
 */
-package com.lmrd.dao.sensitive;
+package com.lmrd.dao.sensitiveWord;
 
-import com.lmrd.entity.sensitive.LmSensitiveWord;
-import com.lmrd.entity.sensitive.LmSensitiveWordExample;
+import com.lmrd.entity.sensitiveWord.LmSensitiveWord;
+import com.lmrd.entity.sensitiveWord.LmSensitiveWordExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

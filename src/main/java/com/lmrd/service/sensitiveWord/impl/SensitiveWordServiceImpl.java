@@ -1,9 +1,9 @@
 package com.lmrd.service.sensitiveWord.impl;
 
 
-import com.lmrd.dao.sensitiveWord.ImSensitiveWordMapper;
-import com.lmrd.entity.sensitiveWord.ImSensitiveWord;
-import com.lmrd.entity.sensitiveWord.ImSensitiveWordExample;
+import com.lmrd.dao.sensitiveWord.LmSensitiveWordMapper;
+import com.lmrd.entity.sensitiveWord.LmSensitiveWord;
+import com.lmrd.entity.sensitiveWord.LmSensitiveWordExample;
 import com.lmrd.service.sensitiveWord.SensitiveWordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,15 +19,15 @@ import java.util.List;
 public class SensitiveWordServiceImpl implements SensitiveWordService {
 
     @Autowired
-    private ImSensitiveWordMapper imSensitiveWordMapper;
+    private LmSensitiveWordMapper imSensitiveWordMapper;
 
     @Override
-    public long countByExample(ImSensitiveWordExample example) {
+    public long countByExample(LmSensitiveWordExample example) {
         return imSensitiveWordMapper.countByExample(example);
     }
 
     @Override
-    public int deleteByExample(ImSensitiveWordExample example) {
+    public int deleteByExample(LmSensitiveWordExample example) {
         return imSensitiveWordMapper.deleteByExample(example);
     }
 
@@ -37,42 +37,42 @@ public class SensitiveWordServiceImpl implements SensitiveWordService {
     }
 
     @Override
-    public int insert(ImSensitiveWord record) {
+    public int insert(LmSensitiveWord record) {
         return imSensitiveWordMapper.insert(record);
     }
 
     @Override
-    public int insertSelective(ImSensitiveWord record) {
+    public int insertSelective(LmSensitiveWord record) {
         return imSensitiveWordMapper.insertSelective(record);
     }
 
     @Override
-    public List<ImSensitiveWord> selectByExample(ImSensitiveWordExample example) {
+    public List<LmSensitiveWord> selectByExample(LmSensitiveWordExample example) {
         return imSensitiveWordMapper.selectByExample(example);
     }
 
     @Override
-    public ImSensitiveWord selectByPrimaryKey(Long sensitiveWordId) {
+    public LmSensitiveWord selectByPrimaryKey(Long sensitiveWordId) {
         return imSensitiveWordMapper.selectByPrimaryKey(sensitiveWordId);
     }
 
     @Override
-    public int updateByExampleSelective(ImSensitiveWord record, ImSensitiveWordExample example) {
+    public int updateByExampleSelective(LmSensitiveWord record, LmSensitiveWordExample example) {
         return imSensitiveWordMapper.updateByExampleSelective(record,example);
     }
 
     @Override
-    public int updateByExample(ImSensitiveWord record, ImSensitiveWordExample example) {
+    public int updateByExample(LmSensitiveWord record, LmSensitiveWordExample example) {
         return imSensitiveWordMapper.updateByExample(record,example);
     }
 
     @Override
-    public int updateByPrimaryKeySelective(ImSensitiveWord record) {
+    public int updateByPrimaryKeySelective(LmSensitiveWord record) {
         return imSensitiveWordMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
-    public int updateByPrimaryKey(ImSensitiveWord record) {
+    public int updateByPrimaryKey(LmSensitiveWord record) {
         return imSensitiveWordMapper.updateByPrimaryKey(record);
     }
 }

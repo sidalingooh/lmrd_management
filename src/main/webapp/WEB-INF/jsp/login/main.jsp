@@ -46,8 +46,7 @@
             <li class="layui-nav-item">
                 <a class="name" href="javascript:;"><img src="./frame/static/image/code.png" alt="logo"> ${loginUser.realName} </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="javascript:;" href-url="demo/login.html"><i class="layui-icon">&#xe621;</i>登录页</a></dd>
-                    <dd><a href="javascript:;" href-url="demo/map.html"><i class="layui-icon">&#xe621;</i>图表</a></dd>
+                    <dd><a href="javascript:;" href-url="${ctx}/editPwd"><i class="layui-icon">&#xe621;</i>修改密码</a></dd>
                     <dd><a href="javascript:void(0);" onclick="loginOut();"><i class="layui-icon">&#x1006;</i>退出</a></dd>
                 </dl>
             </li>

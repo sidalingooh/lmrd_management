@@ -2,7 +2,7 @@
 *
 * BackUser.java
 * @author LiuSiGuang
-* @date 2018-11-01
+* @date 2018-11-06
 */
 package com.lmrd.entity.user;
 
@@ -57,9 +57,9 @@ public class BackUser {
 
     /**
      * 代理商ID
-     * 表字段 : back_user.company_id
+     * 表字段 : back_user.agent_id
      */
-    private Long companyId;
+    private Long agentId;
 
     /**
      * 创建时间
@@ -75,9 +75,15 @@ public class BackUser {
 
     /**
      * 删除时间
-     * 表字段 : back_user.del_time
+     * 表字段 : back_user.delete_time
      */
-    private Long delTime;
+    private Long deleteTime;
+
+    /**
+     * 删除标记
+     * 表字段 : back_user.is_delete
+     */
+    private Integer isDelete;
 
     /**
      * 本版号
@@ -230,21 +236,21 @@ public class BackUser {
     }
 
     /**
-     * 获取 代理商ID 字段:back_user.company_id
+     * 获取 代理商ID 字段:back_user.agent_id
      *
-     * @return back_user.company_id, 代理商ID
+     * @return back_user.agent_id, 代理商ID
      */
-    public Long getCompanyId() {
-        return companyId;
+    public Long getAgentId() {
+        return agentId;
     }
 
     /**
-     * 设置 代理商ID 字段:back_user.company_id
+     * 设置 代理商ID 字段:back_user.agent_id
      *
-     * @param companyId the value for back_user.company_id, 代理商ID
+     * @param agentId the value for back_user.agent_id, 代理商ID
      */
-    public void setCompanyId(Long companyId) {
-        this.companyId = companyId;
+    public void setAgentId(Long agentId) {
+        this.agentId = agentId;
     }
 
     /**
@@ -284,21 +290,39 @@ public class BackUser {
     }
 
     /**
-     * 获取 删除时间 字段:back_user.del_time
+     * 获取 删除时间 字段:back_user.delete_time
      *
-     * @return back_user.del_time, 删除时间
+     * @return back_user.delete_time, 删除时间
      */
-    public Long getDelTime() {
-        return delTime;
+    public Long getDeleteTime() {
+        return deleteTime;
     }
 
     /**
-     * 设置 删除时间 字段:back_user.del_time
+     * 设置 删除时间 字段:back_user.delete_time
      *
-     * @param delTime the value for back_user.del_time, 删除时间
+     * @param deleteTime the value for back_user.delete_time, 删除时间
      */
-    public void setDelTime(Long delTime) {
-        this.delTime = delTime;
+    public void setDeleteTime(Long deleteTime) {
+        this.deleteTime = deleteTime;
+    }
+
+    /**
+     * 获取 删除标记 字段:back_user.is_delete
+     *
+     * @return back_user.is_delete, 删除标记
+     */
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    /**
+     * 设置 删除标记 字段:back_user.is_delete
+     *
+     * @param isDelete the value for back_user.is_delete, 删除标记
+     */
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
     }
 
     /**

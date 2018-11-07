@@ -43,6 +43,7 @@ public class IndustryClassificationController {
         //example.createCriteria().andSensitiveTypeEqualTo(sensitiveType);
 
         //
+        example.createCriteria().andIsDeleteNotEqualTo(1);
         if(StringUtils.isNotBlank(industryClassificationName)) {
             example.createCriteria().andIndustryClassificationNameLike("%" + industryClassificationName + "%");
         }
@@ -60,8 +61,8 @@ public class IndustryClassificationController {
         LmIndustryClassificationExample example = new LmIndustryClassificationExample();
         example.createCriteria().andParentIdEqualTo(0L);
         //example.
-        List<LmIndustryClassification> list = industryClassificationService.selectByExample(example);
-        request.setAttribute("list", list);
+        //List<LmIndustryClassification> list = industryClassificationService.selectByExample(example);
+        //request.setAttribute("list", list);
         return "industryClassification/entry";
     }
 
@@ -69,6 +70,7 @@ public class IndustryClassificationController {
     @ResponseBody
     public List<LmIndustryClassification> selectByParentId(ModelMap map, Long parentId,Integer level) {
         LmIndustryClassificationExample example = new LmIndustryClassificationExample();
+        example.createCriteria().andIsDeleteNotEqualTo(1);
         if(null != parentId) {
             example.createCriteria().andParentIdEqualTo(parentId);
         }
@@ -86,6 +88,7 @@ public class IndustryClassificationController {
     public String saveIndustryClassification(HttpServletRequest request ,LmIndustryClassification industryClassification){
         industryClassification.setCreateTime(System.currentTimeMillis());
         industryClassification.setUpdateTime(System.currentTimeMillis());
+        industryClassification.setIsDelete(0);
         int flag = industryClassificationService.insert(industryClassification);
         if(flag>0) {
             return "succ";
@@ -106,7 +109,7 @@ public class IndustryClassificationController {
     @ResponseBody
     public String updateIndustryClassification(HttpServletRequest request ,LmIndustryClassification industryClassification){
         industryClassification.setUpdateTime(System.currentTimeMillis());
-        int flag = industryClassificationService.updateByPrimaryKey(industryClassification);
+        int flag = industryClassificationService.updateByPrimaryKeySelective(industryClassification);
         if(flag>0) {
             return "succ";
         } else {
@@ -123,11 +126,14 @@ public class IndustryClassificationController {
         }
         LmIndustryClassificationExample backMenuRxample = new LmIndustryClassificationExample();
         backMenuRxample.createCriteria().andParentIdEqualTo(industryClassificationId);
+        backMenuRxample.createCriteria().andIsDeleteNotEqualTo(1);
         List<LmIndustryClassification> parentList = industryClassificationService.selectByExample(backMenuRxample);
         if(null != parentList && parentList.size()>0) {
             return "industryClassificationHaveASon";
         }
-        int flag = industryClassificationService.deleteByPrimaryKey(industryClassificationId);
+        industryClassification.setIsDelete(1);
+        industryClassification.setDeleteTime(System.currentTimeMillis());
+        int flag = industryClassificationService.updateByPrimaryKeySelective(industryClassification);
         if(flag>0) {
             return "succ";
         } else {

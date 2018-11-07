@@ -37,7 +37,7 @@ public class IndexController {
     @RequestMapping(value = "/index")
     public String index(ModelMap map, Integer pageNo, Integer pageSize) {
         map.addAttribute("content","11111111111111111111111111222222222222222");
-        return "index";
+        return "login/login";
     }
 
     @RequestMapping(value = "/auth")
@@ -118,7 +118,8 @@ public class IndexController {
                 //判断查询的登录名称是否为空
                 if(backUser != null){
                     if(StringUtils.isNotBlank(backUser.getUserName()) && StringUtils.isNotBlank(backUser.getPassword())){
-                        if("1".equals(backUser.getEnable())) {
+                        Integer enable = 1;
+                        if(enable.equals(backUser.getEnable()) || enable.equals(backUser.getIsDelete())) {
                             object.put("result", 1);
                             object.put("type", "用户状态不可用");
                             return object.toString();
@@ -180,5 +181,44 @@ public class IndexController {
         return "login/auth";
     }
 
+    @RequestMapping("/editPwd")
+    public String editPwd(HttpServletRequest request){
+        //BackUser backUser = (BackUser) request.getSession().getAttribute("loginUser");
+        return "login/editPwd";
+    }
+
+    @RequestMapping("/updatePwd")
+    @ResponseBody
+    public String updatePwd(HttpServletRequest request,String oldPwd,String newPwd,String confirmPwd){
+        BackUser backUser = (BackUser) request.getSession().getAttribute("loginUser");
+        JSONObject object = new JSONObject();
+        System.out.println(backUser.getPassword());
+        if(!backUser.getPassword().equals(MD5.getMD5ofStr(oldPwd))) {
+            object.put("result", -1);
+            object.put("type", "原始密码输入不正确!");
+            return object.toString();
+        }
+        if(StringUtils.isBlank(newPwd) || StringUtils.isBlank(confirmPwd)) {
+            object.put("result", -1);
+            object.put("type", "请正确输入新密码或确认密码!");
+            return object.toString();
+        }
+        if(!newPwd.equals(confirmPwd)) {
+            object.put("result", -1);
+            object.put("type", "新密码与确认密码不一致请重新输入!");
+            return object.toString();
+        }
+        backUser.setPassword(MD5.getMD5ofStr(newPwd));
+        backUser.setUpdateTime(System.currentTimeMillis());
+        if(backUserService.updateByPrimaryKeySelective(backUser) > 0) {
+            object.put("result", 1);
+            object.put("type", "操作成功!");
+            return object.toString();
+        } else {
+            object.put("result", 1);
+            object.put("type", "操作失败!");
+            return object.toString();
+        }
+    }
 
 }

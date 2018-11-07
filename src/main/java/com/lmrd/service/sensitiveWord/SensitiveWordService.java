@@ -1,7 +1,8 @@
 package com.lmrd.service.sensitiveWord;
 
-import com.lmrd.entity.sensitiveWord.ImSensitiveWord;
-import com.lmrd.entity.sensitiveWord.ImSensitiveWordExample;
+
+import com.lmrd.entity.sensitiveWord.LmSensitiveWord;
+import com.lmrd.entity.sensitiveWord.LmSensitiveWordExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -18,14 +19,14 @@ public interface SensitiveWordService {
      *
      * @param example
      */
-    long countByExample(ImSensitiveWordExample example);
+    long countByExample(LmSensitiveWordExample example);
 
     /**
      *  根据指定的条件删除数据库符合条件的记录,lm_sensitive_word
      *
      * @param example
      */
-    int deleteByExample(ImSensitiveWordExample example);
+    int deleteByExample(LmSensitiveWordExample example);
 
     /**
      *  根据主键删除数据库的记录,lm_sensitive_word
@@ -39,28 +40,28 @@ public interface SensitiveWordService {
      *
      * @param record
      */
-    int insert(ImSensitiveWord record);
+    int insert(LmSensitiveWord record);
 
     /**
      *  动态字段,写入数据库记录,lm_sensitive_word
      *
      * @param record
      */
-    int insertSelective(ImSensitiveWord record);
+    int insertSelective(LmSensitiveWord record);
 
     /**
      *  根据指定的条件查询符合条件的数据库记录,lm_sensitive_word
      *
      * @param example
      */
-    List<ImSensitiveWord> selectByExample(ImSensitiveWordExample example);
+    List<LmSensitiveWord> selectByExample(LmSensitiveWordExample example);
 
     /**
      *  根据指定主键获取一条数据库记录,lm_sensitive_word
      *
      * @param sensitiveWordId
      */
-    ImSensitiveWord selectByPrimaryKey(Long sensitiveWordId);
+    LmSensitiveWord selectByPrimaryKey(Long sensitiveWordId);
 
     /**
      *  动态根据指定的条件来更新符合条件的数据库记录,lm_sensitive_word
@@ -68,7 +69,7 @@ public interface SensitiveWordService {
      * @param record
      * @param example
      */
-    int updateByExampleSelective(@Param("record") ImSensitiveWord record, @Param("example") ImSensitiveWordExample example);
+    int updateByExampleSelective(@Param("record") LmSensitiveWord record, @Param("example") LmSensitiveWordExample example);
 
     /**
      *  根据指定的条件来更新符合条件的数据库记录,lm_sensitive_word
@@ -76,19 +77,19 @@ public interface SensitiveWordService {
      * @param record
      * @param example
      */
-    int updateByExample(@Param("record") ImSensitiveWord record, @Param("example") ImSensitiveWordExample example);
+    int updateByExample(@Param("record") LmSensitiveWord record, @Param("example") LmSensitiveWordExample example);
 
     /**
      *  动态字段,根据主键来更新符合条件的数据库记录,lm_sensitive_word
      *
      * @param record
      */
-    int updateByPrimaryKeySelective(ImSensitiveWord record);
+    int updateByPrimaryKeySelective(LmSensitiveWord record);
 
     /**
      *  根据主键来更新符合条件的数据库记录,lm_sensitive_word
      *
      * @param record
      */
-    int updateByPrimaryKey(ImSensitiveWord record);
+    int updateByPrimaryKey(LmSensitiveWord record);
 }

@@ -58,7 +58,7 @@ public class BackUserController {
         }
         PageUtil.startPage(pageNo, pageSize);
         BackUserExample example = new BackUserExample();
-
+        example.createCriteria().andIsDeleteNotEqualTo(1);
         if(backUser.getUserType().equals(1)) {
             example.createCriteria().andUserTypeEqualTo(2);
         } else if(backUser.getUserType().equals(2)) {
@@ -100,6 +100,12 @@ public class BackUserController {
     public String saveBackUser(HttpServletRequest request,String userName,String realName,
                                String password,Integer enable,Integer userType,String mobile,String email,Long roleId,String provinceId,
                                String cityId,String districtId,String provinceName,String cityName, String districtName){
+        BackUserExample example = new BackUserExample();
+        example.createCriteria().andUserNameEqualTo(userName);
+        List<BackUser> backUserList = backUserService.selectByExample(example);
+        if(null != backUserList && backUserList.size()>0) {
+            return "userNameRepeat";
+        }
         BackUser backUser = new BackUser();
         backUser.setUserName(userName);
         backUser.setRealName(realName);
@@ -110,6 +116,7 @@ public class BackUserController {
         backUser.setPassword(MD5.getMD5ofStr(password));
         backUser.setCreateTime(System.currentTimeMillis());
         backUser.setUpdateTime(System.currentTimeMillis());
+        backUser.setIsDelete(0);
         /*backUser.setProvinceId(provinceId);
         backUser.setProvinceName(provinceName);
         backUser.setCityId(cityId);
@@ -255,7 +262,13 @@ public class BackUserController {
     @RequestMapping(value = "delBackUser")
     @ResponseBody
     public String delBackUser(HttpServletRequest request ,Long backUserId){
-        int flag = backUserService.deleteByPrimaryKey(backUserId);
+        BackUser backUser = backUserService.selectByPrimaryKey(backUserId);
+        if(backUser == null) {
+            return "err";
+        }
+        backUser.setIsDelete(1);
+        backUser.setDeleteTime(System.currentTimeMillis());
+        int flag = backUserService.updateByPrimaryKeySelective(backUser);
         if(flag>0) {
             BackUserRoleExample example = new BackUserRoleExample();
             example.createCriteria().andBackUserIdEqualTo(backUserId);

@@ -2,7 +2,7 @@
 *
 * BackUserMapper.java
 * @author LiuSiGuang
-* @date 2018-11-01
+* @date 2018-11-06
 */
 package com.lmrd.dao.user;
 
@@ -90,7 +90,6 @@ public interface BackUserMapper {
      * @param record
      */
     int updateByPrimaryKey(BackUser record);
-
 
     /**
      *

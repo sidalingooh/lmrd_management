@@ -16,8 +16,8 @@ public class LoginUserMap {
 	 
 	  /**
 	   * 将用户和sessionId存入map
-	   * @param key
-	   * @param value
+	   * @param loginId
+	   * @param sessionId
 	   */
 	  public static void setLoginUsers(Long loginId, String sessionId) {
 	    loginUsers.put(loginId, sessionId);
