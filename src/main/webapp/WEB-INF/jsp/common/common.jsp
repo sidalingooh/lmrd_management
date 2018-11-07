@@ -33,7 +33,7 @@
 <script type="text/javascript" src="${ctx}/js/page.js"></script>
 <script type="text/javascript" src="${ctx}/frame/layui/layui.js"></script>
 <script type="text/javascript" src="${ctx}/frame/static/js/vip_comm.js"></script>
-
+<script type="text/javascript" src="${ctx}/js/common.js"></script>
 
 <script type="text/javascript">
 	var rootPath = '${pageContext.request.contextPath}';

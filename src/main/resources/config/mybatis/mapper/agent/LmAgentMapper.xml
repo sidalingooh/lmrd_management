@@ -704,7 +704,7 @@
   <select id="selectChildrenList" parameterType="com.lmrd.entity.agent.LmAgent" resultMap="BaseResultMap">
     select <include refid="Base_Column_List" />
       from lm_agent
-    where find_in_set(agent_id, getAgentList(#{agentId}))
+    where find_in_set(agent_id, getAgentList(#{agentId})) and is_delete <![CDATA[ <> ]]> 1
       <if test="provinceId != null and provinceId != ''">
         and province_id = #{provinceId},
       </if>
@@ -720,5 +720,6 @@
     <if test="industryTypeTwoId != null and industryTypeTwoId != ''">
       and industry_type_two_id = #{industryTypeTwoId},
     </if>
+    order by update_time desc
   </select>
 </mapper>

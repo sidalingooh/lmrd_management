@@ -1,35 +1,164 @@
-!function (n) {
-    var r = window.webpackJsonp;
-    window.webpackJsonp = function (o, u, c) {
-        for (var f, i, p, a = 0, l = []; a < o.length; a++) i = o[a], t[i] && l.push(t[i][0]), t[i] = 0;
-        for (f in u) Object.prototype.hasOwnProperty.call(u, f) && (n[f] = u[f]);
-        for (r && r(o, u, c); l.length;) l.shift()();
-        if (c) for (a = 0; a < c.length; a++) p = e(e.s = c[a]);
-        return p
-    };
-    var o = {}, t = {5: 0};
+/**
+ * 初始化市级
+ * @returns
+ */
+function getAllProvince(provinceId) {
+    //var provinceId=$("#provinceId").find("option:selected").val();
+    $.ajax({
+        url : "/region/selectProvince",
+        type : "post",
+        data : {
+            //"type" : addtype
+        },
+        cache : false,
+        async : false,
+        success : function(data) {
+            if(data!=null) {
+                $("#provinceId").html("<option value=''>请选择</option>");
+                $("#cityId").html("<option value=''>请选择</option>");
+                $("#districtId").html("<option value=''>请选择</option>");
+                for (k in data) {
+                    //var ss = data[k];
+                    if(provinceId != "" && provinceId != null && provinceId==data[k].regionId) {
+                        $("#provinceId").append("<option value='"+data[k].regionId+"' selected='selected'>"+data[k].name+"</option>");
+                    } else {
+                        $("#provinceId").append("<option value='"+data[k].regionId+"'>"+data[k].name+"</option>");
+                    }
 
-    function e(r) {
-        if (o[r]) return o[r].exports;
-        var t = o[r] = {i: r, l: !1, exports: {}};
-        return n[r].call(t.exports, t, t.exports, e), t.l = !0, t.exports
-    }
+                }
+            }
+        }
+    });
+    layui.use(['form'], function(){
+        layui.form.render();
+    });
+}
 
-    e.m = n, e.c = o, e.d = function (n, r, o) {
-        e.o(n, r) || Object.defineProperty(n, r, {configurable: !1, enumerable: !0, get: o})
-    }, e.n = function (n) {
-        var r = n && n.__esModule ? function () {
-            return n.default
-        } : function () {
-            return n
-        };
-        return e.d(r, "a", r), r
-    }, e.o = function (n, r) {
-        return Object.prototype.hasOwnProperty.call(n, r)
-    }, e.p = "", e.oe = function (n) {
-        throw console.error(n), n
-    }
-}({
-    52: function (n, r) {
-    }
-});
+
+function getDistrictByCity(districtId) {
+    var cityId=$("#cityId").find("option:selected").val();
+    $.ajax({
+        url : "/region/getByRegionCode",
+        type : "post",
+        data : {
+            "regionId" : cityId
+        },
+        cache : false,
+        async : false,
+        success : function(data) {
+            if(data!=null) {
+                $("#districtId").html("<option value=''>请选择</option>");
+                for (k in data) {
+                    //var ss = data[k];
+                    if(districtId != "" && districtId != null && districtId==data[k].regionId) {
+                        $("#districtId").append("<option value='"+data[k].regionId+"' selected='selected'>"+data[k].name+"</option>");
+                    } else {
+                        $("#districtId").append("<option value='"+data[k].regionId+"'>"+data[k].name+"</option>");
+                    }
+
+                }
+            }
+        }
+    });
+    layui.use(['form'], function(){
+        layui.form.render();
+    });
+}
+
+function getCityByProvince(cityId) {
+    var provinceId=$("#provinceId").find("option:selected").val();
+    $.ajax({
+        url : "/region/getByRegionCode",
+        type : "post",
+        data : {
+            "regionId" : provinceId
+        },
+        cache : false,
+        async : false,
+        success : function(data) {
+            if(data!=null) {
+                $("#cityId").html("<option value=''>请选择</option>");
+                $("#districtId").html("<option value=''>请选择</option>");
+                for (k in data) {
+                    //var ss = data[k];
+                    if(cityId != "" && cityId != null && cityId==data[k].regionId) {
+                        $("#cityId").append("<option value='"+data[k].regionId+"' selected='selected'>"+data[k].name+"</option>");
+                    } else {
+                        $("#cityId").append("<option value='"+data[k].regionId+"'>"+data[k].name+"</option>");
+                    }
+
+                }
+            }
+        }
+    });
+    layui.use(['form'], function(){
+        layui.form.render();
+    });
+}
+
+
+/**
+ * 初始化行业主类
+ * @returns
+ */
+function getAllIndustryClassificationLeve1(industryClassificationId) {
+    //var provinceId=$("#provinceId").find("option:selected").val();
+    $.ajax({
+        url : "/industryClassification/getAllIndustryClassificationListLevel1",
+        type : "post",
+        data : {
+            //"type" : addtype
+        },
+        cache : false,
+        async : false,
+        success : function(data) {
+            if(data!=null) {
+                $("#industryTypeId").html("<option value=''>请选择</option>");
+                $("#industryTypeTwoId").html("<option value=''>请选择</option>");
+                for (k in data) {
+                    //var ss = data[k];
+                    if(industryClassificationId != "" && industryClassificationId != null && industryClassificationId==data[k].industryClassificationId) {
+                        $("#industryTypeId").append("<option value='"+data[k].industryClassificationId+"' selected='selected'>"+data[k].industryClassificationName+"</option>");
+                    } else {
+                        $("#industryTypeId").append("<option value='"+data[k].industryClassificationId+"'>"+data[k].industryClassificationName+"</option>");
+                    }
+
+                }
+            }
+        }
+    });
+    layui.use(['form'], function(){
+        layui.form.render();
+    });
+}
+
+function getIndustryClassificationListByParentId(industryClassificationId) {
+    var parentId=$("#industryTypeId").find("option:selected").val();
+
+    $.ajax({
+        url : "/industryClassification/getIndustryClassificationListByParentId",
+        type : "post",
+        data : {
+            "parentId" : parentId
+        },
+        cache : false,
+        async : false,
+        success : function(data) {
+            if(data!=null) {
+                $("#industryTypeTwoId").html("<option value=''>请选择</option>");
+                for (k in data) {
+                    //var ss = data[k];
+                    if(industryClassificationId != "" && industryClassificationId != null && industryClassificationId==data[k].industryClassificationId) {
+                        $("#industryTypeTwoId").append("<option value='"+data[k].industryClassificationId+"' selected='selected'>"+data[k].industryClassificationName+"</option>");
+                    } else {
+                        $("#industryTypeTwoId").append("<option value='"+data[k].industryClassificationId+"'>"+data[k].industryClassificationName+"</option>");
+                    }
+
+                }
+            }
+        }
+    });
+    layui.use(['form'], function(){
+        layui.form.render();
+    });
+}

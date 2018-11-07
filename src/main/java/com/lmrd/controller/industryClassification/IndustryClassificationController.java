@@ -117,6 +117,30 @@ public class IndustryClassificationController {
         }
     }
 
+    @RequestMapping(value = "getAllIndustryClassificationListLevel1")
+    @ResponseBody
+    public List<LmIndustryClassification> getAllIndustryClassificationListLevel1(HttpServletRequest request ){
+        LmIndustryClassificationExample example = new LmIndustryClassificationExample();
+        example.createCriteria().andIsDeleteNotEqualTo(1).andParentIdEqualTo(0L);
+        example.setOrderByClause("update_time DESC");
+        List<LmIndustryClassification> list = industryClassificationService.selectByExample(example);
+        return list;
+    }
+
+
+    @RequestMapping(value = "getIndustryClassificationListByParentId")
+    @ResponseBody
+    public List<LmIndustryClassification> getIndustryClassificationListByParentId(HttpServletRequest request, Long  parentId){
+        if(null == parentId || "".equals(parentId)) {
+            return null;
+        }
+        LmIndustryClassificationExample example = new LmIndustryClassificationExample();
+        example.createCriteria().andIsDeleteNotEqualTo(1).andParentIdEqualTo(parentId);
+        example.setOrderByClause("update_time DESC");
+        List<LmIndustryClassification> list = industryClassificationService.selectByExample(example);
+        return list;
+    }
+
     @RequestMapping(value = "delIndustryClassification")
     @ResponseBody
     public String delIndustryClassification(HttpServletRequest request ,Long industryClassificationId){
